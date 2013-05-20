@@ -1,0 +1,6 @@
+
+= label_tag variable.name.titleize
+- if variable.value.split("\n").count > 1
+  = text_area_tag "options[#{variable.id}][value]", variable.value
+-else
+  = text_field_tag "options[#{variable.id}][value]", variable.value

@@ -1,0 +1,52 @@
+.sub-header.solitary-header.clearfix
+  .button-bar.clearfix
+    .admin-links
+      = link_to 'all Albums', dust_gallery_albums_path, :class => 'border'
+      = link_to "delete album", @album, :confirm => 'Are you sure?', :method => :delete
+
+
+- unless @album.new_record?
+
+  :javascript
+    window.album = #{@album.to_json}
+    window.photos = #{@album.photos.roots.to_json}
+
+  .content-areas
+    .sub-header.clearfix
+      .button-bar.clearfix
+        .title photos
+        .admin-links
+          = link_to "Select Files", "#", :class => "border", :id => "uploader"
+          = link_to "Save Order", "#", :class => "order", 'data-url' => '/dust/sort', 'data-class' => "Dust::Gallery::Photo"
+
+    = render 'photo'
+    .content-wrapper.photos
+
+-# end unless @ablum.new_record?
+
+.form-wrap.clearfix
+
+  = simple_form_for @album do |f|
+    = f.error_messages
+
+    .fields
+      .sub-header.clearfix
+        .button-bar.clearfix
+          .title album fields
+          .admin-links
+          -#= render :partial => 'search'
+      .content-wrapper
+        = f.input :title
+        = f.input :description
+
+      .sub-header
+        .title Menu Item
+      .content-wrapper
+        = f.input :active, :as => :boolean, :label => "Show in Menu"
+        = f.input :menu, :collection => Dust::Menu.all.map{ |m| [m.title, m.id] }
+        = f.input :nav_link, :label => "Name, navigation link"
+        = f.input :filename, :label => "Filename, Found In The Url"
+      
+        .actions
+          = f.button :submit
+

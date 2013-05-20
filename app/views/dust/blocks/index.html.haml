@@ -1,0 +1,16 @@
+- title "Blocks"
+
+.sub-header
+  .button-bar.clearfix
+    = render :partial => 'search'
+    .admin-links
+      = link_to 'new block', new_dust_block_path, :class => '', :title => "New Block"
+
+.content-wrapper
+  = will_paginate @blocks
+  - @blocks.each do |block|
+    .index-item
+      .ui-widget.ui-helper-clearfix{:style => "float:right"}
+        = link_to "", block, :confirm => 'Are you sure?', :method => :delete, :class => 'destroy tip', :title => "Destroy This Item"
+      = link_to block.title, edit_dust_block_path(block)
+  = will_paginate @blocks

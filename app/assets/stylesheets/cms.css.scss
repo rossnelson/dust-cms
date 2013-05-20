@@ -1,0 +1,30 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_directory ./core/reset
+ *= require ./core/plugins/tipTip
+*/
+
+@import 'cms/lib/mixins.css.scss';
+@import 'cms/lib/grid.css.scss';
+
+@import 'cms/login.scss';
+@import 'cms/layout.css.scss';
+@import 'cms/nav.css.scss';
+@import 'cms/icons.css.scss';
+@import 'cms/footer.css.scss';
+@import 'cms/forms.css.scss';
+@import 'cms/gallery.css.scss';
+@import 'cms/flash_messages.css.scss';
+@import 'cms/sections.scss';
+
+
+@import 'cms/jquery-ui.custom.scss';
+@import 'cms/sortables.scss';

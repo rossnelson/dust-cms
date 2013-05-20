@@ -1,0 +1,39 @@
+require_relative './seed.rb'
+
+namespace :dust do
+  desc "Dust cp migrations, migrate, and seed data"
+  task :init => :environment do
+    Rake::Task["dust_engine:install:migrations"].invoke
+    Rake::Task["db:migrate"].invoke
+    Rake::Task["dust:seed"].invoke
+    Rake::Task["dust:config"].invoke
+    Rake::Task["dust:override_scaffold"].invoke
+    Rake::Task["dust:authorization"].invoke
+  end
+
+  desc "Generate all Dust app Data"
+  task :seed => :environment do
+    Dust::Seed.data
+  end
+
+  desc "Dust config initializer"
+  task :config => :environment do
+    template_path = File.join(Dust.root, 'config', 'initializers', 'dust_config.rb')
+    des_path = File.join(Rails.root, 'config', 'initializers')
+    cp(template_path, des_path)
+  end
+
+  desc "Dust authorization_rules initializer"
+  task :authorization => :environment do
+    template_path = File.join(Dust.root, 'config', 'authorization_rules.rb')
+    des_path = File.join(Rails.root, 'config')
+    cp(template_path, des_path)
+  end
+
+  desc "Override Rails scaffold generator"
+  task :override_scaffold => :environment do
+    template_path = File.join(Dust.root, 'config', 'generators', 'templates')
+    des_path = File.join(Rails.root, 'lib', 'templates')
+    cp_r(template_path, des_path)
+  end
+end

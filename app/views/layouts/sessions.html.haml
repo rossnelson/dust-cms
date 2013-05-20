@@ -1,0 +1,19 @@
+!!! Strict
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width,minimum-scale=1,maximum-scale=1", :name => "viewport"}/
+    %meta{:content => "width", :name => "MobileOptimized"}/
+    %meta{:content => "true", :name => "HandheldFriendly"}/
+    %meta{:content => "yes", :name => "apple-mobile-web-app-capable"}/
+    
+    %title= h(yield(:title) || "Dust")
+    = stylesheet_link_tag 'cms'
+    = javascript_include_tag 'cms'
+    = yield(:head)
+  %body
+    .wrapper.login
+      - flash.each do |name, msg|
+        = content_tag :div, msg, :id => "flash_#{name}"
+      = yield

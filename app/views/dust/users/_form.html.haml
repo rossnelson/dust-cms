@@ -1,0 +1,27 @@
+- require_password ||= false
+
+.sub-header
+  .button-bar.clearfix
+    = render 'search'
+    .admin-links
+      = link_to 'all users', dust_users_path, :class => "border"
+      = link_to 'delete user', @user, :confim => 'Are you sure?', :method => :delete if @user.id
+
+
+.content-wrapper
+  = form_for @user, :validate => true do |f|
+    .item
+      = f.label :username
+      = f.text_field :username, :class => 'field'
+      = f.label :email
+      = f.text_field :email, :class => 'field'
+      = f.label :password
+      = f.password_field :password, validate: require_password, :class => 'field', value: nil
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation, validate: require_password, :class => 'field'
+    - if permitted_to? :manage, :users
+      .item
+        = f.label :role, "Select Role"
+        = f.collection_select :role_id, Dust::Role.all(:order => 'name'), :id, :name, {:include_blank => true}
+    .item
+      = f.submit "Submit"
