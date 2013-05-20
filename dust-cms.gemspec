@@ -50,7 +50,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'binding_of_caller'
   s.add_dependency 'quiet_assets'
 
-  s.add_dependency 'dust-ckeditor'
+  s.add_dependency 'dust-ckeditor', '3.7.3'
 end
 
 
