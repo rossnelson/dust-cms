@@ -18,9 +18,12 @@ require "hashie"
 require "jbuilder"
 require "mustache"
 require "haml-rails"
-require "thin"
 require "numbers_and_words"
-require "better_errors"
+
+unless Rails.env.production?
+  require "thin"
+  require "better_errors"
+end
 
 module Dust
   extend self

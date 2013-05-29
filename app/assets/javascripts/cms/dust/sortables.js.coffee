@@ -45,7 +45,7 @@ Dust.sortables = {
         parent_id: $(item).parent().parent().data('id')
         children: new Array()
       if data.parent_id
-        children.push(dato)
+        children.push(data)
         return false
       else
         return data
