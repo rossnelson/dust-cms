@@ -5,6 +5,6 @@
 - content_for :admin do
   = render :partial => 'front_end/page/admin'
 
-= render_region "content-default"
 - @page.sections.each do |section|
   = render_region section.title.parameterize, section.classes
+= render_region "content-default"

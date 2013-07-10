@@ -3,7 +3,7 @@ module Dust
     belongs_to :page
     attr_accessible :classes, :position, :title
     acts_as_nested_set
-    default_scope order('position')
+    default_scope roots
 
     validates_presence_of :title
     validates_uniqueness_of :title

@@ -26,8 +26,8 @@
       .content-wrapper
         = f.input :active, :as => :boolean, :label => "Show in Menu"
         = f.input :menu, :collection => Dust::Menu.all.map{ |m| [m.title, m.id] }
-        = f.input :nav_link, :label => "Name, navigation link"
-        = f.input :filename, :label => "Filename, Found In The Url"
+        = f.input :nav_link, :as => :hidden
+        = f.input :filename, :as => :hidden
 
     .content-areas
       .sub-header.clearfix
@@ -36,3 +36,4 @@
         = f.cktext_area("body", :width => '100%', :height => '400px')
         .actions
           = f.button :submit
+

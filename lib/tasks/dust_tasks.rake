@@ -9,6 +9,7 @@ namespace :dust do
     Rake::Task["dust:config"].invoke
     Rake::Task["dust:override_scaffold"].invoke
     Rake::Task["dust:authorization"].invoke
+    Rake::Task["dust:init_css"].invoke
   end
 
   desc "Generate all Dust app Data"
@@ -30,6 +31,17 @@ namespace :dust do
     cp(template_path, des_path)
   end
 
+  desc "Dust init css"
+  task :init_css => :environment do
+    template_path = File.join(Dust.root, 'app', 'assets', 'stylesheets', 'front_end')
+    des_path = File.join(Rails.root, 'app', 'assets', 'stylesheets')
+    cp_r(template_path, des_path)
+
+    template_path = File.join(Dust.root, 'app', 'assets', 'stylesheets', 'front_end.css')
+    des_path = File.join(Rails.root, 'app', 'assets', 'stylesheets')
+    cp(template_path, des_path)
+  end
+  
   desc "Override Rails scaffold generator"
   task :override_scaffold => :environment do
     template_path = File.join(Dust.root, 'config', 'generators', 'templates')

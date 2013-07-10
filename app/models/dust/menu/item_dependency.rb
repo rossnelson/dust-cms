@@ -6,7 +6,7 @@ module Dust
 
       included do
         attr_accessible :filename, :nav_link, :active, :menu
-        has_one :menu_item, :as => :linkable, :dependent => :destroy, :autosave => true
+        has_one :menu_item, :as => :linkable, :dependent => :destroy, :autosave => true, :class_name => Dust::MenuItem
 
         auto_build :menu_item
       end

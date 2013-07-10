@@ -49,7 +49,10 @@ module Dust
     end
 
     def show_me?(uri)
-      (url_list.include?(uri) || url_list.blank?)
+      show = false
+      show = true if (url_list.include?(uri) || url_list.blank?)
+      show = true if (uri == "/" && url_list.include?("/#{Dust.config.root}"))
+      show
     end
 
     def self.find_active(uri)
@@ -64,6 +67,17 @@ module Dust
       }
 
       Handlebar.render(body, options)
+    end
+
+    def pages
+      pages = []
+      Page.all.each do |page|
+        pages << page if url_list.include?(page.menu_item.url)
+        pages << page if url_list.blank?
+      end
+      puts url_list.inspect
+      puts pages.inspect
+      pages
     end
 
     def self.widget_list

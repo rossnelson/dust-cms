@@ -12,7 +12,7 @@ module Dust
     end
 
     def published_date
-      self.published_at.strftime("%Y/%m/%d")
+      self.published_at ? self.published_at.strftime("%Y/%m/%d") : Time.now.strftime("%Y/%m/%d")
     end
 
     def published_date=(date_str)
@@ -20,11 +20,15 @@ module Dust
     end
 
     def slug
-      "#{published_date}/#{title.parameterize}"
+      "#{published_date}/#{url_title.parameterize}"
+    end
+
+    def url_title
+      title.blank? ? "empty-title" : title
     end
 
     def filename
-      slug
+      url_title
     end
 
     def filename=(filename="")
@@ -32,3 +36,4 @@ module Dust
     end
   end
 end
+

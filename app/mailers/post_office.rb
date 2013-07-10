@@ -1,6 +1,6 @@
 class PostOffice < ActionMailer::Base
 
-  default :from => "no-reply@dust.com"
+  default :from => default_recipient
 
   def contact_confirmation(contact)
     @contact = contact

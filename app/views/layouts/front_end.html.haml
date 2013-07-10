@@ -1,9 +1,9 @@
 !!! 5
 %html{ :class => content_classes }
   %head
-    %title= h(yield(:title) || "Dust")
-    %meta{:content => yield(:description) + @site_data.site_info.default_description, :name => "description"}/
-    = stylesheet_link_tag 'front_end', 'application'#, 'http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600'#, 'http://fonts.googleapis.com/css?family=Julius+Sans+One'
+    %title= h(yield(:title) || @site_data.site_info.site_url)
+    %meta{:content => (yield(:description) || @site_data.site_info.default_description), :name => "description"}/
+    = stylesheet_link_tag 'front_end', 'application'
     = csrf_meta_tag
     = yield(:head)
   %body
@@ -20,6 +20,6 @@
       = render :partial => 'dust/users/user_bar'
       = yield :admin
 
-  = javascript_include_tag 'application'
+  = javascript_include_tag 'front_end', 'application'
   = yield(:js)
   = render :partial => 'layouts/app_partials/analytics'
