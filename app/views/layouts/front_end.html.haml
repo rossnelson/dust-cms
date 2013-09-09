@@ -10,13 +10,10 @@
     - flash.each do |name, msg|
       = content_tag :div, msg, :id => "flash_#{name}"
     #container
-      = render_region 'header-one'
-      = render_region 'header-two'
-      = render_region 'slider'
-      = render_region 'callouts'
-      = yield
-      = render_region 'footer-one'
-      = render_region 'footer-two'
+      - Dust.config.regions.each do |region|
+        = render_region region
+        - if Dust.config.insert_yield_after == region
+          = yield
       = render :partial => 'dust/users/user_bar'
       = yield :admin
 

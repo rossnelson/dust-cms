@@ -9,6 +9,10 @@ module Dust
 
     validates_presence_of :meta_title
     after_create :create_starter_block
+    has_many :blocks, 
+      :finder_sql => proc{"SELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE \"%/#{filename}%\" ORDER BY weight ASC"}
+    has_many :old_blocks, :class_name => Block,
+      :finder_sql => proc{"SELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE \"%#{menu_item.url_was}%\" ORDER BY weight ASC"}
 
     #-- ActiveRecord Queries --#
     def self.page(search, page)

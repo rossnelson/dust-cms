@@ -4,8 +4,8 @@
     .clearfix{:style => "float:right"}
       = link_to "", item, :confirm => 'Are you sure?', :method => :delete, :class => 'ui-icon ui-icon-close destroy tip', :title => "Destroy This Item"
     = link_to item.title, edit_dust_menu_item_path(item, :return => request.path, :menu_id => menu.id), :class => 'ui-icon	ui-icon-pencil edit tip', :title => "Edit This Item"
-    = content_tag :ul do
-      - item.children.each do |child|
-        = render "dust/menu_items/tree", :item => child, :menu => menu
-    - end unless item.leaf?
+  = content_tag :ul do
+    - item.children.each do |child|
+      = render "dust/menu_items/tree", :item => child, :menu => menu
+  - end unless item.leaf?
 

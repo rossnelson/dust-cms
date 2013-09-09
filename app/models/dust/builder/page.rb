@@ -10,6 +10,7 @@ module Dust
 
       def save
         build_sections
+        update_blocks
         if @page.errors.blank?
           @page.save
         else
@@ -19,6 +20,7 @@ module Dust
 
       def update
         build_sections
+        update_blocks
         if @page.errors.blank?
           @page.update_attributes(@page_attrs)
         else
@@ -43,6 +45,27 @@ module Dust
             determine_validity_of(section)
             @page.sections << section
           end
+        end
+      end
+
+      def update_blocks
+        if @page.menu_item.url_changed? 
+          previous = @page.menu_item.url_was
+          current = @page.menu_item.url
+
+          @page.old_blocks.each do |block|
+            show = block.show.gsub(previous, current)
+            unless block.update_attributes(:show => show)
+              validate_block(block)
+            end
+          end
+        end
+      end
+
+      def validate_block(block)
+        @page.errors[:base] << "Block #{block.title} is not valid"
+        block.errors.full_messages.each do |error|
+          @page.errors[:base] << "Block | #{error}"
         end
       end
 

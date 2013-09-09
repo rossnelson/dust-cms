@@ -25,7 +25,7 @@ Dust.sortables = {
     list = @buildData()
     url = $('.order').data('url')
 
-    $.post url, list
+    #$.post url, list
 
   buildData: ()->
     return {
@@ -51,6 +51,8 @@ Dust.sortables = {
         return data
     )
     @buildChildren(children)
+    console.log @itemList
+    console.log children
 
     _.compact(@itemList)
 

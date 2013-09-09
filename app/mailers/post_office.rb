@@ -32,4 +32,8 @@ class PostOffice < ActionMailer::Base
     Dust.site_wides.contact_info.default_recipient || "no-reply@dust.com"
   end
 
+  def self.default_recipient
+    self.new.default_recipient
+  end
+
 end
