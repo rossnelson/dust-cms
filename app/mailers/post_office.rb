@@ -1,6 +1,6 @@
 class PostOffice < ActionMailer::Base
 
-  default :from => default_recipient
+  default :from => Dust.default_recipient
 
   def contact_confirmation(contact)
     @contact = contact
@@ -9,7 +9,7 @@ class PostOffice < ActionMailer::Base
 
   def contact_request(contact)
     @contact = contact
-    mail(:to => default_recipient, :subject => "New contact request has been received.")
+    mail(:to => Dust.default_recipient, :subject => "New contact request has been received.")
   end
 
   def password_reset_instructions(user)
@@ -20,20 +20,12 @@ class PostOffice < ActionMailer::Base
 
   def activation_needed_email(user)
     @user = user
-    mail(:to => default_recipient, :subject => "User #{@user.username} is awaiting approval.", :content_type => "text/html")
+    mail(:to => Dust.default_recipient, :subject => "User #{@user.username} is awaiting approval.", :content_type => "text/html")
   end
 
   def activation_success_email(user)
     @user = user
-    mail(:to => "#{user.username} <#{user.email}>", :subject => "Your Landmark Title account has been approved.", :content_type => "text/html")
-  end
-
-  def default_recipient
-    Dust.site_wides.contact_info.default_recipient || "no-reply@dust.com"
-  end
-
-  def self.default_recipient
-    self.new.default_recipient
+    mail(:to => "#{user.username} <#{user.email}>", :subject => "Your account has been approved.", :content_type => "text/html")
   end
 
 end

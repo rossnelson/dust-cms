@@ -267,7 +267,7 @@ Rails.application.config.sorcery.configure do |config|
     # mailer class. Needed.
     # Default: `nil`
     #
-    #user.reset_password_mailer = PostOffice
+    #user.reset_password_mailer = Dust.config.mailer
 
 
     # reset password email method on your mailer class.

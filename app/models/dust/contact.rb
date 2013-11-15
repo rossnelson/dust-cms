@@ -16,8 +16,8 @@ module Dust
     end
 
     def deliver_messages
-      PostOffice.contact_confirmation(self).deliver
-      PostOffice.contact_request(self).deliver
+      Dust.config.mailer.contact_confirmation(self).deliver
+      Dust.config.mailer.contact_request(self).deliver
     end
 
     def self.search(search, date)

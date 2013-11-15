@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib,vendor}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.require_paths = ["lib"]
 
-  s.add_dependency("rails", "~> 3.2.11")
+  s.add_dependency("rails", "~> 3.2")
   s.add_dependency("sorcery")
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails'

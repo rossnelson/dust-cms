@@ -34,7 +34,13 @@ module Dust
   end
 
   def site_wides
-    @site_wide ||= Dust::SiteWide.all_to_object
+    Dust::SiteWide.all_to_object
+  end
+
+  def default_recipient
+    Dust.site_wides.contact_info.default_recipient
+    rescue
+      "no-reply@dust.com"
   end
 
   def configure(&block)
@@ -45,5 +51,9 @@ module Dust
   def config
     @config ||= OpenStruct.new
   end
+end
+
+if Rails.env.production?
+  ENV['PATH'] = "#{Dust.config.uploader_command_path}:#{ENV['PATH']}"
 end
 

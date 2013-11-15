@@ -4,7 +4,7 @@ module Dust
       attr_accessible :description, :lft, :parent_id, :rgt, :title, :album_id, :filename
       acts_as_nested_set
 
-      mount_uploader :filename, GalleryPhotoUploader
+      mount_uploader :filename, Dust.config.uploader
 
       belongs_to :album
 
