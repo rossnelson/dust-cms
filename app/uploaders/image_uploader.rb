@@ -29,11 +29,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  process :resize_to_fit => [620, 358]
+  process :resize_to_fit => Dust.config.full_image_dimensions
   
   # Create different versions of your uploaded files:
   version :thumb do
-    process :resize_to_fill => [105, 70]
+    process :resize_to_fill => Dust.config.thumb_image_dimensions
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

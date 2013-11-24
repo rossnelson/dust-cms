@@ -10,7 +10,7 @@ module Dust
       Rails.application.config.assets.paths << "#{Dust.root}/app/assets/stylesheets"
       Rails.application.config.assets.paths << "#{Dust.root}/app/assets/javascripts"
 
-      Rails.application.config.assets.precompile += %w( front_end.css cms.js cms.css )
+      Rails.application.config.assets.precompile += %w( front_end.js front_end.css cms.js cms.css )
 
     end
 

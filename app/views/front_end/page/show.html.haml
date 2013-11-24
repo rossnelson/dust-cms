@@ -5,4 +5,4 @@
   = render :partial => 'front_end/page/admin'
 
 - @page.sections.each do |section|
-  = render_region section.title.parameterize, section.classes
+  = render_region section.slug, section.classes

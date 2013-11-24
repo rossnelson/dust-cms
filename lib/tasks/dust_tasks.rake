@@ -19,14 +19,14 @@ namespace :dust do
 
   desc "Dust config initializer"
   task :config => :environment do
-    template_path = File.join(Dust.root, 'config', 'initializers', 'dust_config.rb')
+    template_path = File.join(Dust.root, 'config', 'config_templates', 'dust_config.rb')
     des_path = File.join(Rails.root, 'config', 'initializers')
     cp(template_path, des_path)
   end
 
   desc "Dust authorization_rules initializer"
   task :authorization => :environment do
-    template_path = File.join(Dust.root, 'config', 'authorization_rules.rb')
+    template_path = File.join(Dust.root, 'config', 'config_templates', 'authorization_rules.rb')
     des_path = File.join(Rails.root, 'config')
     cp(template_path, des_path)
   end

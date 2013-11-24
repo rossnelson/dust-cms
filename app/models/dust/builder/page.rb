@@ -9,13 +9,14 @@ module Dust
       end
 
       def save
-        build_sections
-        update_blocks
-        if @page.errors.blank?
-          @page.save
-        else
-          false
-        end
+          build_sections
+          update_blocks
+          if @page.errors.blank?
+            @page.save
+            @block.save
+          else
+            false
+          end
       end
 
       def update
@@ -60,6 +61,8 @@ module Dust
             end
           end
         end
+
+        create_starter_block if @page.new_record?
       end
 
       def validate_block(block)
@@ -76,6 +79,18 @@ module Dust
             @page.errors[:base] << "Section | #{error}"
           end
         end
+      end
+
+      def create_starter_block
+        @block = Block.new(
+          :show_title => true,
+          :title => "#{@page.meta_title} Page Content", 
+          :body => "<h1> #{@page.meta_title} </h1> <p>New content.</p>", 
+          :classes => "twelve columns", 
+          :where_to_show => Dust.config.default_region,
+          :show => "/#{@page.filename}",
+          :weight => 0
+        )
       end
 
     end

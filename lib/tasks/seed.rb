@@ -24,11 +24,14 @@ module Dust
         {:title => "Menus", :url    => "/dust/menus", :menu_id          => 2, :active => 1}
       ])
 
-      @page = Dust::Page.create({:meta_title => "Welcome"})
-      @page.build_menu_item
-      @page.menu_item.update_attributes(
-        {:title => "Home", :url => "/welcome", :menu_id => 1}
+      @page = Dust::Page.new_with_menu_item(
+        :meta_title => "Welcome",
+        :nav_link => "Home", 
+        :filename => "welcome", 
+        :menu => 1
       )
+      @builder = Dust::Builder::Page.new(:page => @page)
+      @builder.save
 
       Dust::SiteWide.create([
         {:name => "analytics code", :value         => "UA-xxxxx-1", :category                                   => "site info"},

@@ -7,5 +7,9 @@ module Dust
 
     validates_presence_of :title
     validates_uniqueness_of :title
+
+    def slug
+      "#{page.nav_link.parameterize}-#{title.parameterize}"
+    end
   end
 end

@@ -1,7 +1,7 @@
 .ui-sortable {
   list-style: none;
   margin-bottom: 0;
-  
+
   ul { margin:0; }
 
   li {
@@ -18,3 +18,13 @@
     }
   }
 }
+
+.handle {
+  width: 22px;
+  display: block;
+  float: left;
+  background: url(/assets/admin/ui/handle.png) no-repeat;
+  padding-right: 33px;
+  cursor: move;
+}
+

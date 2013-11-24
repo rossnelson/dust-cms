@@ -28,32 +28,9 @@ module Dust
       end
     end
 
-    def blocks
-      Block.all
-    end
-    
-    def menu
-      MenuItem.all
+    def current_year
+      Time.now.strftime("%Y")
     end
 
-    def slides
-      Nivo::Slide.rotate.map{ |slide|
-        {
-        :image         => slide.image.url
-        }
-      }
-    end
-    
-    def recent
-      Post.recent.map{ |post|
-        {
-        :title         => post.title,
-        :content          => post.preview,
-        :published_at  => post.published_date,
-        :slug          => post.kind == "workshop" ? "workshops" : "resources"
-        }
-      }
-    end
-    
   end
 end

@@ -31,25 +31,25 @@ module Dust
       list.where("active = ?", true)
     end
 
-    def edit_linkable
-      "/#{root.linkable_type.downcase.pluralize}/#{root.linkable_id}/edit"
-    end
+    #def edit_linkable
+      #"/#{root.linkable_type.downcase.pluralize}/#{root.linkable_id}/edit"
+    #end
 
-    def destroy_linkable
-      "/#{root.linkable_type.downcase.pluralize}/#{root.linkable_id}"
-    end
+    #def destroy_linkable
+      #"/#{root.linkable_type.downcase.pluralize}/#{root.linkable_id}"
+    #end
 
     def children_urls
       self.descendants.map{ |item| item.url }
     end
 
-    REGEX = '^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$'
+    EXTERNAL_URL_MATCH = '^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$'
 
     def html_options?(uri)
       mash = Hashie::Mash.new 
 
       mash.class = "last" if self == self.self_and_siblings.all(:conditions => ['active = ?', true]).last
-      mash.target = "_blank" if url.match(REGEX)
+      mash.target = "_blank" if url.match(EXTERNAL_URL_MATCH)
       mash.class = "active" if self.is_active? uri
       mash.class = "active last" if (self.is_active? uri) and self == self.self_and_siblings.last
       mash

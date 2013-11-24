@@ -16,7 +16,7 @@ module Dust
         pretty_regions << [region.humanize.titleize, region]
       end
       Dust::Page.all.each do |page|
-        pretty_regions.concat page.sections.map{ |s| ["#{page.nav_link} | #{s.title}", s.title.parameterize] } unless page.sections.blank?
+        pretty_regions.concat page.sections.map{ |s| ["#{page.nav_link} | #{s.title}", s.slug] } unless page.sections.blank?
       end
       pretty_regions
     end
