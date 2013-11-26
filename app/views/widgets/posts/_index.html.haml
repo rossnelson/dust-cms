@@ -1,1 +1,6 @@
-Hi There
+- @posts = Dust::Post.recent
+
+.posts
+  - @posts.each do |post|
+    .post
+      = link_to post.title, front_end_post(post.slug)

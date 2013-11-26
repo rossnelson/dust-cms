@@ -41,6 +41,7 @@ module Dust
 
     def children_urls
       self.descendants.map{ |item| item.url }
+      #:finder_sql => proc{"SELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE \"%#{menu_item.url_was}%\" ORDER BY weight ASC"},
     end
 
     EXTERNAL_URL_MATCH = '^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$'

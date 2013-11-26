@@ -2,10 +2,10 @@ module Dust
   class Post < ActiveRecord::Base
     include Dust::Menu::ItemDependency
     mount_uploader :file, ImageUploader
-
     attr_accessible :body, :file, :published, :published_date, :share, :share_type, :title
-
     validates_presence_of :title, :body, :published_date
+
+    scope :recent, where(:published => true).order('published_date ASC')
 
     def share_types
       ['Facebook', 'Twitter']
@@ -20,11 +20,11 @@ module Dust
     end
 
     def slug
-      "#{published_date}/#{url_title.parameterize}"
+      "#{published_date}/#{url_title}"
     end
 
     def url_title
-      title.blank? ? "empty-title" : title
+      title.blank? ? "empty-title" : title.parameterize
     end
 
     def filename

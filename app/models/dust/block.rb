@@ -7,26 +7,12 @@ module Dust
     include ActionView::Helpers::TextHelper
     include ActionView::Helpers::SanitizeHelper
 
+    include Decorator::Block::Widget
+    include Decorator::Block::Page
+    include Decorator::Block::Grid
+
     validates_presence_of :title
     validates_uniqueness_of :title
-
-    def self.regions
-      pretty_regions = []
-      Dust.config.regions.each do |region|
-        pretty_regions << [region.humanize.titleize, region]
-      end
-      Dust::Page.all.each do |page|
-        pretty_regions.concat page.sections.map{ |s| ["#{page.nav_link} | #{s.title}", s.slug] } unless page.sections.blank?
-      end
-      pretty_regions
-    end
-
-    def self.grid
-      grid = OpenStruct.new
-      grid.columns = (1..12).map{ |i| [i.to_words.titleize, "#{i.to_words} columns"] }
-      grid.offsets = (1..12).map{|i| ["Offset by #{i.to_words.titleize}", "offset-by-#{i.to_words}"]}
-      grid
-    end
 
     def self.page(search, page)
       search(search).paginate(:per_page => 12, :page => page)
@@ -40,74 +26,9 @@ module Dust
       end
     end
 
-    def final_classes
-      [column_span, column_offset, classes].join(" ")
-    end
-
-    def url_list
-      show.split("\r\n")
-    end
-
-    def show_me?(uri)
-      show = false
-      show = true if (url_list.include?(uri) || url_list.blank?)
-      show = true if (uri == "/" && url_list.include?("/#{Dust.config.root}"))
-      show
-    end
-
-    def self.find_active(uri)
-      blocks = Block.all
-      blocks.delete_if {|b| !b.show_me?(uri) }
-      blocks
-    end
-
     def front_end_content
-      options = {
-        :block => self
-      }
-
+      options = {:block => self}
       Handlebar.render(body, options)
-    end
-
-    def pages
-      pages = []
-      Page.all.each do |page|
-        pages << page if url_list.include?(page.menu_item.url)
-        pages << page if url_list.blank?
-      end
-      puts url_list.inspect
-      puts pages.inspect
-      pages
-    end
-
-    def self.widget_list
-      files = []
-      paths = widget_filenames
-      puts paths
-      paths.each do |filename|
-        if filename[0] != "." # if file is not hidden
-          files.push filename.sub('_', '').gsub('.html.haml', '')
-        end
-      end
-      files
-    end
-
-    private
-
-    def self.widget_files
-      paths = []
-      Dir["#{Dust.root}/app/views/widgets/**/*"].each {|path| paths << path }
-      Dir["#{Rails.root}/app/views/widgets/**/**"].each {|path| paths << path }
-      paths
-    end
-
-    def self.widget_filenames
-      widget_files.select{ |p| File.file?(p) }.map { |f| widget_option(f) }
-    end
-
-    def self.widget_option(path)
-      partial_path = path.gsub("#{Dust.root}/app/views/widgets/", "").gsub("#{Rails.root}/app/views/widgets/", "")
-      partial_path
     end
 
   end

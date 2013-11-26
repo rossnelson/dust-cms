@@ -9,14 +9,14 @@ module Dust
       end
 
       def save
-          build_sections
-          update_blocks
-          if @page.errors.blank?
-            @page.save
-            @block.save
-          else
-            false
-          end
+        build_sections
+        update_blocks
+        if @page.errors.blank?
+          @page.save
+          @block.save
+        else
+          false
+        end
       end
 
       def update
@@ -86,7 +86,7 @@ module Dust
           :show_title => true,
           :title => "#{@page.meta_title} Page Content", 
           :body => "<h1> #{@page.meta_title} </h1> <p>New content.</p>", 
-          :classes => "twelve columns", 
+          :column_span => "twelve columns",
           :where_to_show => Dust.config.default_region,
           :show => "/#{@page.filename}",
           :weight => 0

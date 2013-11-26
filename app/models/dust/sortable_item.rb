@@ -5,9 +5,9 @@ module Dust
     attr_reader :object_class, :id, :position
 
     def initialize(options={})
-      @position = options[:position]
+      @position     = options[:position]
       @object_class = options[:class_name].constantize
-      @id = options[:id]
+      @id           = options[:id]
 
       self.children = options[:children]
     end
