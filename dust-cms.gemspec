@@ -19,8 +19,8 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.metadata = {
-    :docs => "http://daux.simian.us"
-    :source => "http://git.simian.us/ross/dust"
+    "docs" => "http://daux.simian.us",
+    "source" => "http://git.simian.us/ross/dust"
   }
 
   s.add_dependency("rails", "~> 3.2")
