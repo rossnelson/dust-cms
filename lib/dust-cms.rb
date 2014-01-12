@@ -22,7 +22,7 @@ require "numbers_and_words"
 
 unless Rails.env.production?
   require "thin"
-  require "better_errors"
+  #require "better_errors"
 end
 
 module Dust

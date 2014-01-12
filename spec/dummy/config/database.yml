@@ -1,0 +1,15 @@
+development:
+  adapter: mysql2
+  database: dust-cms-dev
+  username: root
+
+test:
+  adapter: mysql2
+  database: dust-cms-test
+  username: root
+
+production:
+  adapter: mysql2
+  database: dust-cms-prod
+  username: root
+

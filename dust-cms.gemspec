@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.description = "Drop in Rails CMS : `bundle` and run `rake dust:init`"
 
   s.files = Dir["{app,config,db,lib,vendor}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
+  s.test_files = Dir["spec/**/*"]
   s.require_paths = ["lib"]
 
   s.metadata = {
@@ -23,8 +24,13 @@ Gem::Specification.new do |s|
     "source" => "http://git.simian.us/ross/dust"
   }
 
-  s.add_dependency("rails", "~> 3.2")
-  s.add_dependency("sorcery")
+  s.add_development_dependency 'mysql2'
+  s.add_development_dependency 'rspec-rails'
+  s.add_development_dependency 'capybara'
+  s.add_development_dependency 'factory_girl_rails'
+
+  s.add_dependency "rails", "~> 3.2.16"
+  s.add_dependency "sorcery"
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails'
 
@@ -43,7 +49,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'auto_build'
 
   s.add_dependency 'hashie'
-  #s.add_dependency 'inherited_resources'
   s.add_dependency 'jbuilder'
   s.add_dependency 'mustache'
   s.add_dependency "haml-rails"
