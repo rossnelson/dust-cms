@@ -9,6 +9,8 @@ module Dust
         has_one :menu_item, :as => :linkable, :dependent => :destroy, :autosave => true, :class_name => Dust::MenuItem
 
         auto_build :menu_item
+
+        validates_presence_of :filename, :active, :nav_link, :menu
       end
 
       def match_path

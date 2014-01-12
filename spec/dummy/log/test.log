@@ -1,0 +1,70 @@
+Connecting to database specified by database.yml
+  [1m[36m (301.2ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (427.1ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)
+  [1m[36m (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to CreateRoles (20101206025845)
+  [1m[35m (230.6ms)[0m  CREATE TABLE `roles` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255)) ENGINE=InnoDB
+  [1m[36m (0.4ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20101206025845')[0m
+Migrating to CreateCkeditorAssets (20110217212357)
+  [1m[35m (356.4ms)[0m  CREATE TABLE `ckeditor_assets` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `data_file_name` varchar(255) NOT NULL, `data_content_type` varchar(255), `data_file_size` int(11), `assetable_id` int(11), `assetable_type` varchar(30), `type` varchar(25), `guid` varchar(10), `locale` tinyint DEFAULT 0, `user_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (251.7ms)[0m  [1mCREATE INDEX `idx_assetable_type` ON `ckeditor_assets` (`assetable_type`, `type`, `assetable_id`)[0m
+  [1m[35m (242.5ms)[0m  CREATE INDEX `fk_assetable` ON `ckeditor_assets` (`assetable_type`, `assetable_id`)
+  [1m[36m (274.8ms)[0m  [1mCREATE INDEX `fk_user` ON `ckeditor_assets` (`user_id`)[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110217212357')
+Migrating to CreatePages (20110218000640)
+  [1m[36m (295.4ms)[0m  [1mCREATE TABLE `pages` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `meta_title` varchar(255), `meta_description` text, `classes` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (7.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110218000640')
+Migrating to CreateSections (20110218000641)
+  [1m[36m (343.7ms)[0m  [1mCREATE TABLE `sections` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `classes` varchar(255), `position` int(11), `page_id` int(11), `parent_id` int(11), `lft` int(11), `rgt` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (23.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110218000641')
+Migrating to CreateContacts (20110218002220)
+  [1m[36m (253.8ms)[0m  [1mCREATE TABLE `contacts` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `email` varchar(255), `company_name` varchar(255), `phone` varchar(255), `address` varchar(255), `city` varchar(255), `state` varchar(255), `zip` varchar(255), `message` varchar(255), `hear` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (19.9ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110218002220')
+Migrating to CreateMenuItems (20110218020608)
+  [1m[36m (336.8ms)[0m  [1mCREATE TABLE `menu_items` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255) DEFAULT 'Empty', `url` varchar(255) DEFAULT '/empty', `active` tinyint(1) DEFAULT 0, `lft` int(11), `rgt` int(11), `parent_id` int(11), `menu_id` int(11) DEFAULT 0, `linkable_id` int(11), `linkable_type` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (21.4ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110218020608')
+Migrating to CreateBlocks (20110507014158)
+  [1m[36m (309.9ms)[0m  [1mCREATE TABLE `blocks` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `show_title` tinyint(1), `title` varchar(255), `body` text, `where_to_show` varchar(255), `show` text, `column_span` varchar(255), `column_offset` varchar(255), `classes` varchar(255), `weight` int(11), `partial_name` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110507014158')
+Migrating to SorceryCore (20121106195938)
+  [1m[36m (426.3ms)[0m  [1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(255) NOT NULL, `email` varchar(255), `crypted_password` varchar(255), `salt` varchar(255), `role_id` varchar(255), `last_login_from_ip_address` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (34.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20121106195938')
+Migrating to SorceryRememberMe (20121106195939)
+  [1m[36m (409.0ms)[0m  [1mALTER TABLE `users` ADD `remember_me_token` varchar(255) DEFAULT NULL[0m
+  [1m[35m (407.2ms)[0m  ALTER TABLE `users` ADD `remember_me_token_expires_at` datetime DEFAULT NULL
+  [1m[36m (275.0ms)[0m  [1mCREATE INDEX `index_users_on_remember_me_token` ON `users` (`remember_me_token`)[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20121106195939')
+Migrating to SorceryResetPassword (20121106195940)
+  [1m[36m (213.2ms)[0m  [1mALTER TABLE `users` ADD `reset_password_token` varchar(255) DEFAULT NULL[0m
+  [1m[35m (224.9ms)[0m  ALTER TABLE `users` ADD `reset_password_token_expires_at` datetime DEFAULT NULL
+  [1m[36m (278.5ms)[0m  [1mALTER TABLE `users` ADD `reset_password_email_sent_at` datetime DEFAULT NULL[0m
+  [1m[35m (273.5ms)[0m  CREATE INDEX `index_users_on_reset_password_token` ON `users` (`reset_password_token`)
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20121106195940')[0m
+Migrating to SorceryActivityLogging (20121106195941)
+  [1m[35m (268.0ms)[0m  ALTER TABLE `users` ADD `last_login_at` datetime DEFAULT NULL
+  [1m[36m (215.0ms)[0m  [1mALTER TABLE `users` ADD `last_logout_at` datetime DEFAULT NULL[0m
+  [1m[35m (382.0ms)[0m  ALTER TABLE `users` ADD `last_activity_at` datetime DEFAULT NULL
+  [1m[36m (210.8ms)[0m  [1mCREATE INDEX `index_users_on_last_logout_at_and_last_activity_at` ON `users` (`last_logout_at`, `last_activity_at`)[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20121106195941')
+Migrating to SorceryUserActivation (20121106200754)
+  [1m[36m (278.0ms)[0m  [1mALTER TABLE `users` ADD `activation_state` varchar(255) DEFAULT NULL[0m
+  [1m[35m (244.0ms)[0m  ALTER TABLE `users` ADD `activation_token` varchar(255) DEFAULT NULL
+  [1m[36m (315.7ms)[0m  [1mALTER TABLE `users` ADD `activation_token_expires_at` datetime DEFAULT NULL[0m
+  [1m[35m (214.1ms)[0m  CREATE INDEX `index_users_on_activation_token` ON `users` (`activation_token`)
+  [1m[36m (0.4ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20121106200754')[0m
+Migrating to CreateSiteWides (20130220044031)
+  [1m[35m (225.5ms)[0m  CREATE TABLE `site_wides` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `value` text, `category` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130220044031')[0m
+Migrating to CreateMenus (20130220051658)
+  [1m[35m (227.7ms)[0m  CREATE TABLE `menus` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `nestable` varchar(255), `desc` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130220051658')[0m
+Migrating to CreateAlbums (20130223030136)
+  [1m[35m (169.2ms)[0m  CREATE TABLE `albums` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` text, `parent_id` int(11), `lft` int(11), `rgt` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130223030136')[0m
+Migrating to CreatePhotos (20130223040911)
+  [1m[35m (173.7ms)[0m  CREATE TABLE `photos` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` text, `filename` varchar(255), `album_id` int(11), `parent_id` int(11), `lft` int(11), `rgt` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130223040911')[0m
+Migrating to CreatePosts (20130223044553)
+  [1m[35m (175.9ms)[0m  CREATE TABLE `posts` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `file` varchar(255), `published` tinyint(1), `published_at` datetime, `share` tinyint(1), `share_type` varchar(255), `body` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130223044553')[0m
+  [1m[35m (0.2ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 

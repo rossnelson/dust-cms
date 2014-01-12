@@ -1,2 +1,603 @@
 Connecting to database specified by database.yml
 Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+Mysql2::Error: Table 'dust-cms-dev.pages' doesn't exist: SHOW FULL FIELDS FROM `pages`
+  [1m[35m (0.2ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+  [1m[36m (213.5ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (322.0ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)
+  [1m[36m (0.5ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to CreateRoles (20101206025845)
+  [1m[35m (234.1ms)[0m  CREATE TABLE `roles` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255)) ENGINE=InnoDB
+  [1m[36m (1.4ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20101206025845')[0m
+Migrating to CreateCkeditorAssets (20110217212357)
+  [1m[35m (221.3ms)[0m  CREATE TABLE `ckeditor_assets` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `data_file_name` varchar(255) NOT NULL, `data_content_type` varchar(255), `data_file_size` int(11), `assetable_id` int(11), `assetable_type` varchar(30), `type` varchar(25), `guid` varchar(10), `locale` tinyint DEFAULT 0, `user_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (238.8ms)[0m  [1mCREATE INDEX `idx_assetable_type` ON `ckeditor_assets` (`assetable_type`, `type`, `assetable_id`)[0m
+  [1m[35m (155.2ms)[0m  CREATE INDEX `fk_assetable` ON `ckeditor_assets` (`assetable_type`, `assetable_id`)
+  [1m[36m (279.3ms)[0m  [1mCREATE INDEX `fk_user` ON `ckeditor_assets` (`user_id`)[0m
+  [1m[35m (67.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110217212357')
+Migrating to CreatePages (20110218000640)
+  [1m[36m (255.5ms)[0m  [1mCREATE TABLE `pages` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `meta_title` varchar(255), `meta_description` text, `classes` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110218000640')
+Migrating to CreateSections (20110218000641)
+  [1m[36m (246.9ms)[0m  [1mCREATE TABLE `sections` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `classes` varchar(255), `position` int(11), `page_id` int(11), `parent_id` int(11), `lft` int(11), `rgt` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110218000641')
+Migrating to CreateContacts (20110218002220)
+  [1m[36m (262.3ms)[0m  [1mCREATE TABLE `contacts` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `email` varchar(255), `company_name` varchar(255), `phone` varchar(255), `address` varchar(255), `city` varchar(255), `state` varchar(255), `zip` varchar(255), `message` varchar(255), `hear` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (20.6ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110218002220')
+Migrating to CreateMenuItems (20110218020608)
+  [1m[36m (200.7ms)[0m  [1mCREATE TABLE `menu_items` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255) DEFAULT 'Empty', `url` varchar(255) DEFAULT '/empty', `active` tinyint(1) DEFAULT 0, `lft` int(11), `rgt` int(11), `parent_id` int(11), `menu_id` int(11) DEFAULT 0, `linkable_id` int(11), `linkable_type` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110218020608')
+Migrating to CreateBlocks (20110507014158)
+  [1m[36m (184.7ms)[0m  [1mCREATE TABLE `blocks` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `show_title` tinyint(1), `title` varchar(255), `body` text, `where_to_show` varchar(255), `show` text, `column_span` varchar(255), `column_offset` varchar(255), `classes` varchar(255), `weight` int(11), `partial_name` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20110507014158')
+Migrating to SorceryCore (20121106195938)
+  [1m[36m (175.4ms)[0m  [1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(255) NOT NULL, `email` varchar(255), `crypted_password` varchar(255), `salt` varchar(255), `role_id` varchar(255), `last_login_from_ip_address` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20121106195938')
+Migrating to SorceryRememberMe (20121106195939)
+  [1m[36m (192.5ms)[0m  [1mALTER TABLE `users` ADD `remember_me_token` varchar(255) DEFAULT NULL[0m
+  [1m[35m (210.6ms)[0m  ALTER TABLE `users` ADD `remember_me_token_expires_at` datetime DEFAULT NULL
+  [1m[36m (204.7ms)[0m  [1mCREATE INDEX `index_users_on_remember_me_token` ON `users` (`remember_me_token`)[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20121106195939')
+Migrating to SorceryResetPassword (20121106195940)
+  [1m[36m (218.9ms)[0m  [1mALTER TABLE `users` ADD `reset_password_token` varchar(255) DEFAULT NULL[0m
+  [1m[35m (212.5ms)[0m  ALTER TABLE `users` ADD `reset_password_token_expires_at` datetime DEFAULT NULL
+  [1m[36m (220.9ms)[0m  [1mALTER TABLE `users` ADD `reset_password_email_sent_at` datetime DEFAULT NULL[0m
+  [1m[35m (220.1ms)[0m  CREATE INDEX `index_users_on_reset_password_token` ON `users` (`reset_password_token`)
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20121106195940')[0m
+Migrating to SorceryActivityLogging (20121106195941)
+  [1m[35m (216.9ms)[0m  ALTER TABLE `users` ADD `last_login_at` datetime DEFAULT NULL
+  [1m[36m (284.5ms)[0m  [1mALTER TABLE `users` ADD `last_logout_at` datetime DEFAULT NULL[0m
+  [1m[35m (238.3ms)[0m  ALTER TABLE `users` ADD `last_activity_at` datetime DEFAULT NULL
+  [1m[36m (187.0ms)[0m  [1mCREATE INDEX `index_users_on_last_logout_at_and_last_activity_at` ON `users` (`last_logout_at`, `last_activity_at`)[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20121106195941')
+Migrating to SorceryUserActivation (20121106200754)
+  [1m[36m (217.4ms)[0m  [1mALTER TABLE `users` ADD `activation_state` varchar(255) DEFAULT NULL[0m
+  [1m[35m (222.0ms)[0m  ALTER TABLE `users` ADD `activation_token` varchar(255) DEFAULT NULL
+  [1m[36m (222.9ms)[0m  [1mALTER TABLE `users` ADD `activation_token_expires_at` datetime DEFAULT NULL[0m
+  [1m[35m (206.3ms)[0m  CREATE INDEX `index_users_on_activation_token` ON `users` (`activation_token`)
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20121106200754')[0m
+Migrating to CreateSiteWides (20130220044031)
+  [1m[35m (245.8ms)[0m  CREATE TABLE `site_wides` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `value` text, `category` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130220044031')[0m
+Migrating to CreateMenus (20130220051658)
+  [1m[35m (193.6ms)[0m  CREATE TABLE `menus` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `nestable` varchar(255), `desc` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130220051658')[0m
+Migrating to CreateAlbums (20130223030136)
+  [1m[35m (218.0ms)[0m  CREATE TABLE `albums` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` text, `parent_id` int(11), `lft` int(11), `rgt` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130223030136')[0m
+Migrating to CreatePhotos (20130223040911)
+  [1m[35m (165.4ms)[0m  CREATE TABLE `photos` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` text, `filename` varchar(255), `album_id` int(11), `parent_id` int(11), `lft` int(11), `rgt` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130223040911')[0m
+Migrating to CreatePosts (20130223044553)
+  [1m[35m (196.6ms)[0m  CREATE TABLE `posts` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `file` varchar(255), `published` tinyint(1), `published_at` datetime, `share` tinyint(1), `share_type` varchar(255), `body` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130223044553')[0m
+  [1m[35m (0.2ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (18.1ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/empty' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- sed\n- qui\n- nulla\n', '2014-01-12 02:51:35', '---\n- quam\n- voluptatibus\n- est\n- quisquam\n- atque\n- eius\n- repudiandae\n- corporis\n- fuga\n- ipsa\n- aut\n- quis\n- possimus\n- eaque\n- rerum\n- minus\n- voluptatum\n- totam\n- est\n- necessitatibus\n- aperiam\n- blanditiis\n- debitis\n- aliquam\n- distinctio\n- sed\n- consequatur\n- fugiat\n- culpa\n- repellat\n', '---\n- rem\n- omnis\n- quis\n', '2014-01-12 02:51:35')
+  [1m[36mDust::MenuItem Load (0.6ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (0, '2014-01-12 02:51:35', 1, 1, 'Dust::Page', 0, NULL, 2, 'Empty', '2014-01-12 02:51:35', '/empty')
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.3ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE (`menu_items`.`url` = BINARY '/empty' AND `menu_items`.`id` != 1) LIMIT 1
+  [1m[36m (89.5ms)[0m  [1mROLLBACK[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/empty' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- incidunt\n- dolorem\n- cupiditate\n', '2014-01-12 02:54:03', '---\n- minima\n- et\n- sed\n- quas\n- rem\n- consequatur\n- deserunt\n- pariatur\n- sint\n- doloremque\n- distinctio\n- vel\n- qui\n- enim\n- voluptas\n- voluptatibus\n- blanditiis\n- sed\n- qui\n- totam\n- suscipit\n- occaecati\n- dolores\n- neque\n- vitae\n- quidem\n- expedita\n- cum\n- a\n- dolorem\n', '---\n- fugiat\n- pariatur\n- sapiente\n', '2014-01-12 02:54:03')
+  [1m[36mDust::MenuItem Load (0.2ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (0, '2014-01-12 02:54:03', 1, 2, 'Dust::Page', 0, NULL, 2, 'Empty', '2014-01-12 02:54:03', '/empty')
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.4ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE (`menu_items`.`url` = BINARY '/empty' AND `menu_items`.`id` != 2) LIMIT 1
+  [1m[36m (32.6ms)[0m  [1mROLLBACK[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/empty' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- recusandae\n- iste\n- atque\n', '2014-01-12 02:56:02', '---\n- perferendis\n- doloribus\n- sed\n- omnis\n- aspernatur\n- sit\n- amet\n- quasi\n- praesentium\n- qui\n- eaque\n- est\n- nihil\n- voluptates\n- magni\n- ad\n- nobis\n- quia\n- commodi\n- ut\n- et\n- quod\n- similique\n- tenetur\n- qui\n- consequuntur\n- autem\n- rerum\n- ipsum\n- molestias\n', '---\n- et\n- in\n- voluptate\n', '2014-01-12 02:56:02')
+  [1m[36mDust::MenuItem Load (0.4ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (0, '2014-01-12 02:56:02', 1, 3, 'Dust::Page', 0, NULL, 2, 'Empty', '2014-01-12 02:56:02', '/empty')
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.3ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE (`menu_items`.`url` = BINARY '/empty' AND `menu_items`.`id` != 3) LIMIT 1
+  [1m[36m (90.0ms)[0m  [1mROLLBACK[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/empty' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- vero\n- tempore\n- sint\n', '2014-01-12 03:01:32', '---\n- eos\n- voluptatibus\n- et\n- minus\n- necessitatibus\n- inventore\n- sunt\n- qui\n- temporibus\n- qui\n- quisquam\n- provident\n- aut\n- ab\n- praesentium\n- molestiae\n- ex\n- non\n- et\n- ut\n- quos\n- ut\n- vel\n- vitae\n- ducimus\n- quam\n- ipsam\n- nemo\n- sequi\n- dolor\n', '---\n- nihil\n- sequi\n- nemo\n', '2014-01-12 03:01:32')
+  [1m[36mDust::MenuItem Load (0.3ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (15.5ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (0, '2014-01-12 03:01:32', 1, 4, 'Dust::Page', 0, NULL, 2, 'Empty', '2014-01-12 03:01:32', '/empty')
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.4ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE (`menu_items`.`url` = BINARY '/empty' AND `menu_items`.`id` != 4) LIMIT 1
+  [1m[36m (4.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.3ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/empty' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- distinctio\n- amet\n- quidem\n', '2014-01-12 03:01:32', '---\n- et\n- eius\n- natus\n- ea\n- dolorem\n- quod\n- accusamus\n- quisquam\n- fugiat\n- ut\n- nam\n- autem\n- quo\n- molestiae\n- unde\n- inventore\n- libero\n- error\n- facere\n- quasi\n- rerum\n- quia\n- doloremque\n- est\n- dolore\n- illo\n- dolores\n- officia\n- autem\n- porro\n', '---\n- numquam\n- eligendi\n- voluptatem\n', '2014-01-12 03:01:32')[0m
+  [1m[35mDust::MenuItem Load (0.2ms)[0m  SELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (0, '2014-01-12 03:01:32', 1, 5, 'Dust::Page', 0, NULL, 2, 'Empty', '2014-01-12 03:01:32', '/empty')[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mDust::Block Load (17.7ms)[0m  [1mSELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE "%/empty%" ORDER BY weight ASC[0m
+  [1m[35m (0.7ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (8.3ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/empty' LIMIT 1[0m
+  [1m[35mSQL (64.1ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- quas\n- molestiae\n- similique\n', '2014-01-12 03:26:31', '---\n- quasi\n- temporibus\n- veniam\n- pariatur\n- sint\n- optio\n- et\n- consequuntur\n- neque\n- quia\n- voluptatem\n- vitae\n- ut\n- perferendis\n- laudantium\n- impedit\n- adipisci\n- provident\n- dolorem\n- occaecati\n- voluptatibus\n- sit\n- voluptas\n- error\n- et\n- voluptates\n- eligendi\n- deserunt\n- nostrum\n- dolor\n', '---\n- cumque\n- et\n- enim\n', '2014-01-12 03:26:31')
+  [1m[36mDust::MenuItem Load (15.6ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (0, '2014-01-12 03:26:31', 1, 6, 'Dust::Page', 0, NULL, 2, 'Empty', '2014-01-12 03:26:31', '/empty')
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mDust::Block Load (0.4ms)[0m  SELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE "%/empty%" ORDER BY weight ASC
+  [1m[36m (17.4ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.3ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/empty' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- recusandae\n- est\n- nisi\n', '2014-01-12 03:26:31', '---\n- sunt\n- sapiente\n- rem\n- reiciendis\n- debitis\n- recusandae\n- nemo\n- consequatur\n- corrupti\n- quasi\n- laboriosam\n- quis\n- velit\n- maxime\n- quia\n- labore\n- fugit\n- voluptas\n- aut\n- et\n- magni\n- praesentium\n- minus\n- eaque\n- provident\n- officia\n- suscipit\n- et\n- perferendis\n- alias\n', '---\n- autem\n- dolore\n- dolorem\n', '2014-01-12 03:26:31')[0m
+  [1m[35mDust::MenuItem Load (0.2ms)[0m  SELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (0, '2014-01-12 03:26:31', 1, 7, 'Dust::Page', 0, NULL, 2, 'Empty', '2014-01-12 03:26:31', '/empty')[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE (`menu_items`.`url` = BINARY '/empty' AND `menu_items`.`id` != 7) LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/empty' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- omnis\n- nostrum\n- doloremque\n', '2014-01-12 03:26:31', '---\n- odio\n- dolore\n- corporis\n- voluptatem\n- voluptatum\n- natus\n- laboriosam\n- eum\n- et\n- rerum\n- tempora\n- qui\n- excepturi\n- sit\n- error\n- est\n- rerum\n- quo\n- nihil\n- quas\n- molestiae\n- deleniti\n- sit\n- quibusdam\n- sit\n- distinctio\n- molestiae\n- maiores\n- mollitia\n- et\n', '---\n- soluta\n- sapiente\n- ea\n', '2014-01-12 03:26:31')
+  [1m[36mDust::MenuItem Load (0.1ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (0, '2014-01-12 03:26:31', 1, 8, 'Dust::Page', 0, NULL, 2, 'Empty', '2014-01-12 03:26:31', '/empty')
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE (`menu_items`.`url` = BINARY '/empty' AND `menu_items`.`id` != 8) LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (31.8ms)[0m  [1mROLLBACK[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/empty' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- amet\n- odit\n- porro\n', '2014-01-12 03:27:21', '---\n- explicabo\n- non\n- culpa\n- quasi\n- corporis\n- et\n- inventore\n- non\n- amet\n- aut\n- commodi\n- sint\n- magnam\n- et\n- dolores\n- et\n- eveniet\n- omnis\n- laboriosam\n- quae\n- dolor\n- quia\n- qui\n- voluptas\n- excepturi\n- quibusdam\n- voluptatem\n- eum\n- optio\n- quod\n', '---\n- numquam\n- est\n- assumenda\n', '2014-01-12 03:27:21')
+  [1m[36mDust::MenuItem Load (0.4ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (0, '2014-01-12 03:27:21', 1, 9, 'Dust::Page', 0, NULL, 2, 'Empty', '2014-01-12 03:27:21', '/empty')
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mDust::Block Load (0.3ms)[0m  SELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE "%/empty%" ORDER BY weight ASC
+  [1m[36m (0.5ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.2ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/empty' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- qui\n- est\n- nulla\n', '2014-01-12 03:27:21', '---\n- dolores\n- nesciunt\n- tenetur\n- aliquam\n- deserunt\n- quo\n- ratione\n- minus\n- nostrum\n- tempora\n- sit\n- aperiam\n- vero\n- repudiandae\n- nihil\n- quia\n- totam\n- cum\n- quibusdam\n- molestiae\n- harum\n- et\n- dicta\n- voluptatem\n- ut\n- sapiente\n- alias\n- modi\n- maxime\n- eius\n', '---\n- sit\n- necessitatibus\n- quo\n', '2014-01-12 03:27:21')[0m
+  [1m[35mDust::MenuItem Load (0.2ms)[0m  SELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE
+  [1m[36mSQL (13.4ms)[0m  [1mINSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (0, '2014-01-12 03:27:21', 1, 10, 'Dust::Page', 0, NULL, 2, 'Empty', '2014-01-12 03:27:21', '/empty')[0m
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE (`menu_items`.`url` = BINARY '/empty' AND `menu_items`.`id` != 10) LIMIT 1[0m
+  [1m[35m (5.6ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/empty' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- et\n- quod\n- dolore\n', '2014-01-12 03:27:21', '---\n- saepe\n- qui\n- velit\n- aliquid\n- quo\n- quia\n- et\n- quis\n- et\n- reprehenderit\n- omnis\n- quia\n- aut\n- consectetur\n- qui\n- pariatur\n- aut\n- id\n- eius\n- et\n- at\n- nemo\n- distinctio\n- magnam\n- ea\n- est\n- officia\n- tenetur\n- sit\n- dolor\n', '---\n- laboriosam\n- et\n- architecto\n', '2014-01-12 03:27:21')
+  [1m[36mDust::MenuItem Load (0.2ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (0, '2014-01-12 03:27:21', 1, 11, 'Dust::Page', 0, NULL, 2, 'Empty', '2014-01-12 03:27:21', '/empty')
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE (`menu_items`.`url` = BINARY '/empty' AND `menu_items`.`id` != 11) LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.5ms)[0m  [1mROLLBACK[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/empty' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- sint\n- voluptatem\n- ab\n', '2014-01-12 03:28:19', '---\n- enim\n- odio\n- est\n- ut\n- quidem\n- temporibus\n- ipsam\n- tenetur\n- vitae\n- recusandae\n- quisquam\n- qui\n- corporis\n- ad\n- voluptatem\n- mollitia\n- vero\n- rerum\n- consequuntur\n- impedit\n- omnis\n- eius\n- sed\n- neque\n- non\n- ut\n- nam\n- expedita\n- in\n- tempore\n', '---\n- sint\n- commodi\n- fugit\n', '2014-01-12 03:28:19')
+  [1m[36mDust::MenuItem Load (0.3ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (14.8ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (0, '2014-01-12 03:28:19', 1, 12, 'Dust::Page', 0, NULL, 2, 'Empty', '2014-01-12 03:28:19', '/empty')
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.7ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/empty' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- reprehenderit\n- ea\n- et\n', '2014-01-12 03:28:19', '---\n- labore\n- commodi\n- deserunt\n- eos\n- aliquam\n- quia\n- aut\n- officiis\n- quos\n- suscipit\n- corporis\n- natus\n- occaecati\n- cumque\n- quam\n- ut\n- nostrum\n- temporibus\n- accusamus\n- iure\n- minus\n- ea\n- ut\n- iusto\n- ratione\n- a\n- nesciunt\n- adipisci\n- modi\n- dolor\n', '---\n- qui\n- nam\n- et\n', '2014-01-12 03:28:19')
+  [1m[36mDust::MenuItem Load (0.2ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (0, '2014-01-12 03:28:19', 1, 13, 'Dust::Page', 0, NULL, 2, 'Empty', '2014-01-12 03:28:19', '/empty')
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.2ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE (`menu_items`.`url` = BINARY '/empty' AND `menu_items`.`id` != 13) LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.2ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/empty' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- dolor\n- rerum\n- voluptatem\n', '2014-01-12 03:28:19', '---\n- aut\n- veniam\n- minima\n- dignissimos\n- facilis\n- quo\n- tempore\n- qui\n- ipsam\n- dolorem\n- ratione\n- quis\n- porro\n- magnam\n- id\n- consequatur\n- nesciunt\n- velit\n- sunt\n- atque\n- possimus\n- nulla\n- commodi\n- repellendus\n- unde\n- sit\n- maiores\n- sit\n- accusantium\n- impedit\n', '---\n- et\n- error\n- aperiam\n', '2014-01-12 03:28:19')[0m
+  [1m[35mDust::MenuItem Load (0.1ms)[0m  SELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (0, '2014-01-12 03:28:19', 1, 14, 'Dust::Page', 0, NULL, 2, 'Empty', '2014-01-12 03:28:19', '/empty')[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mDust::Block Load (0.3ms)[0m  [1mSELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE "%/empty%" ORDER BY weight ASC[0m
+  [1m[35m (0.5ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/empty' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.3ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/empty' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/empty' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.4ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/empty' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/empty' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.2ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/empty' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/sequi-numquam' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- error\n- labore\n- ipsum\n', '2014-01-12 03:40:38', '---\n- id\n- eos\n- laudantium\n- quasi\n- placeat\n- officiis\n- alias\n- explicabo\n- repellendus\n- ipsum\n- consequatur\n- asperiores\n- qui\n- omnis\n- excepturi\n- rerum\n- sit\n- aut\n- enim\n- voluptate\n- qui\n- quam\n- dolore\n- dolores\n- ut\n- consequatur\n- omnis\n- a\n- et\n- odio\n', '---\n- excepturi\n- sit\n- qui\n', '2014-01-12 03:40:38')
+  [1m[36mDust::MenuItem Load (0.4ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:40:38', 1, 15, 'Dust::Page', 7, NULL, 2, '---\n- nihil\n- sequi\n- quia\n', '2014-01-12 03:40:38', '/sequi-numquam')
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (1.0ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/molestiae.quia' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- illum\n- accusamus\n- sunt\n', '2014-01-12 03:40:38', '---\n- repudiandae\n- voluptates\n- vitae\n- deserunt\n- magnam\n- delectus\n- distinctio\n- et\n- perspiciatis\n- et\n- officiis\n- vel\n- ut\n- dolorem\n- quod\n- dolor\n- atque\n- reiciendis\n- cumque\n- quia\n- assumenda\n- modi\n- iusto\n- voluptas\n- non\n- illum\n- aperiam\n- quis\n- quia\n- voluptatem\n', '---\n- laboriosam\n- exercitationem\n- et\n', '2014-01-12 03:40:38')
+  [1m[36mDust::MenuItem Load (0.2ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:40:38', 1, 16, 'Dust::Page', 5, NULL, 2, '---\n- ducimus\n- nobis\n- itaque\n', '2014-01-12 03:40:38', '/molestiae.quia')
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.2ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE (`menu_items`.`url` = BINARY '/molestiae.quia' AND `menu_items`.`id` != 16) LIMIT 1
+  [1m[36m (0.8ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.4ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/rem-accusamus' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- non\n- velit\n- officia\n', '2014-01-12 03:40:38', '---\n- voluptas\n- et\n- incidunt\n- accusamus\n- excepturi\n- illo\n- consequatur\n- error\n- omnis\n- saepe\n- magni\n- officia\n- reprehenderit\n- et\n- natus\n- quia\n- ullam\n- voluptas\n- et\n- et\n- dolor\n- rerum\n- corporis\n- ducimus\n- ut\n- provident\n- ea\n- in\n- repudiandae\n- quia\n', '---\n- modi\n- dolores\n- accusamus\n', '2014-01-12 03:40:38')[0m
+  [1m[35mDust::MenuItem Load (0.2ms)[0m  SELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:40:38', 1, 17, 'Dust::Page', 2, NULL, 2, '---\n- quod\n- accusamus\n- tempora\n', '2014-01-12 03:40:38', '/rem-accusamus')[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mDust::Block Load (0.4ms)[0m  [1mSELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE "%/rem-accusamus%" ORDER BY weight ASC[0m
+  [1m[35m (0.6ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/nulla_rerum' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- sit\n- quia\n- et\n', '2014-01-12 03:40:38', '---\n- et\n- recusandae\n- qui\n- rerum\n- placeat\n- quaerat\n- nesciunt\n- modi\n- voluptas\n- excepturi\n- laudantium\n- voluptatem\n- amet\n- non\n- possimus\n- labore\n- corporis\n- et\n- porro\n- veritatis\n- doloremque\n- qui\n- tenetur\n- soluta\n- et\n- accusamus\n- beatae\n- et\n- asperiores\n- veniam\n', '---\n- est\n- ea\n- iste\n', '2014-01-12 03:40:38')
+  [1m[36mDust::MenuItem Load (0.2ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:40:38', 1, 18, 'Dust::Page', 5, NULL, 2, '---\n- quaerat\n- voluptas\n- delectus\n', '2014-01-12 03:40:38', '/nulla_rerum')
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.2ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE (`menu_items`.`url` = BINARY '/nulla_rerum' AND `menu_items`.`id` != 18) LIMIT 1
+  [1m[36m (0.9ms)[0m  [1mROLLBACK[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/neque-accusamus' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- voluptates\n- sint\n- deleniti\n', '2014-01-12 03:41:14', '---\n- et\n- aut\n- beatae\n- animi\n- eos\n- architecto\n- vitae\n- consequatur\n- perferendis\n- occaecati\n- placeat\n- qui\n- molestiae\n- recusandae\n- sequi\n- quam\n- repellendus\n- quaerat\n- odio\n- iusto\n- ducimus\n- minus\n- molestias\n- explicabo\n- voluptas\n- non\n- sint\n- quis\n- aliquid\n- voluptatem\n', '---\n- exercitationem\n- nihil\n- cupiditate\n', '2014-01-12 03:41:14')
+  [1m[36mDust::MenuItem Load (0.3ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:41:14', 1, 19, 'Dust::Page', 7, NULL, 2, '---\n- repellat\n- ducimus\n- non\n', '2014-01-12 03:41:14', '/neque-accusamus')
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.8ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/sed-rerum' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- voluptatem\n- nemo\n- cum\n', '2014-01-12 03:41:14', '---\n- ex\n- autem\n- voluptatibus\n- reiciendis\n- sunt\n- impedit\n- cum\n- pariatur\n- in\n- officia\n- consequatur\n- odio\n- eius\n- maxime\n- libero\n- minima\n- iste\n- sed\n- ducimus\n- excepturi\n- unde\n- necessitatibus\n- beatae\n- quia\n- ipsam\n- illum\n- molestias\n- quis\n- blanditiis\n- expedita\n', '---\n- magnam\n- quia\n- itaque\n', '2014-01-12 03:41:14')
+  [1m[36mDust::MenuItem Load (0.2ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:41:14', 1, 20, 'Dust::Page', 7, NULL, 2, '---\n- consequatur\n- dolores\n- earum\n', '2014-01-12 03:41:14', '/sed-rerum')
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.3ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE (`menu_items`.`url` = BINARY '/sed-rerum' AND `menu_items`.`id` != 20) LIMIT 1
+  [1m[36m (11.4ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.2ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/sunt.aperiam' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- animi\n- quia\n- corrupti\n', '2014-01-12 03:41:14', '---\n- et\n- omnis\n- nam\n- dolorum\n- eum\n- rerum\n- numquam\n- quisquam\n- modi\n- nulla\n- veniam\n- cum\n- dolorem\n- soluta\n- autem\n- quo\n- repellat\n- eos\n- nesciunt\n- id\n- velit\n- nihil\n- voluptatem\n- ut\n- harum\n- nihil\n- et\n- error\n- eligendi\n- et\n', '---\n- iure\n- quasi\n- alias\n', '2014-01-12 03:41:14')[0m
+  [1m[35mDust::MenuItem Load (0.2ms)[0m  SELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:41:14', 1, 21, 'Dust::Page', 0, NULL, 2, '---\n- at\n- fugiat\n- laudantium\n', '2014-01-12 03:41:14', '/sunt.aperiam')[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mDust::Block Load (0.4ms)[0m  [1mSELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE "%/sunt.aperiam%" ORDER BY weight ASC[0m
+  [1m[35m (0.5ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/tenetur-quisquam' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- doloribus\n- minus\n- eaque\n', '2014-01-12 03:41:14', '---\n- assumenda\n- nobis\n- et\n- sed\n- dignissimos\n- ab\n- aut\n- quia\n- rem\n- atque\n- rerum\n- nemo\n- id\n- odit\n- unde\n- aut\n- voluptates\n- ratione\n- est\n- in\n- dolore\n- est\n- vitae\n- rerum\n- iusto\n- quas\n- laborum\n- quo\n- quam\n- aut\n', '---\n- expedita\n- sit\n- in\n', '2014-01-12 03:41:14')
+  [1m[36mDust::MenuItem Load (0.2ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (21.5ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:41:14', 1, 22, 'Dust::Page', 3, NULL, 2, '---\n- magni\n- sit\n- nihil\n', '2014-01-12 03:41:14', '/tenetur-quisquam')
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.4ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE (`menu_items`.`url` = BINARY '/tenetur-quisquam' AND `menu_items`.`id` != 22) LIMIT 1
+  [1m[36m (0.6ms)[0m  [1mROLLBACK[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/veniam.eos' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- ad\n- saepe\n- commodi\n', '2014-01-12 03:41:56', '---\n- et\n- repellat\n- mollitia\n- dolor\n- debitis\n- possimus\n- fugiat\n- consequatur\n- accusamus\n- quidem\n- laboriosam\n- qui\n- animi\n- at\n- suscipit\n- perspiciatis\n- et\n- aperiam\n- veniam\n- voluptate\n- provident\n- a\n- voluptas\n- adipisci\n- est\n- impedit\n- quo\n- quod\n- velit\n- ut\n', '---\n- cumque\n- similique\n- odit\n', '2014-01-12 03:41:56')
+  [1m[36mDust::MenuItem Load (0.3ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:41:56', 1, 23, 'Dust::Page', 4, NULL, 2, '---\n- aut\n- labore\n- quisquam\n', '2014-01-12 03:41:56', '/veniam.eos')
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (73.7ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/expedita.est' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- odio\n- vel\n- ut\n', '2014-01-12 03:41:56', '---\n- enim\n- atque\n- deserunt\n- ipsam\n- dolores\n- est\n- qui\n- dolore\n- cum\n- et\n- in\n- minima\n- sit\n- officiis\n- blanditiis\n- quibusdam\n- tempora\n- aut\n- vitae\n- eius\n- eum\n- voluptatem\n- mollitia\n- qui\n- quia\n- quis\n- non\n- quod\n- voluptates\n- illum\n', '---\n- labore\n- nulla\n- dolorem\n', '2014-01-12 03:41:56')
+  [1m[36mDust::MenuItem Load (0.2ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:41:56', 1, 24, 'Dust::Page', 8, NULL, 2, '---\n- sapiente\n- quo\n- minima\n', '2014-01-12 03:41:56', '/expedita.est')
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.3ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE (`menu_items`.`url` = BINARY '/expedita.est' AND `menu_items`.`id` != 24) LIMIT 1
+  [1m[36m (26.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.3ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/pariatur-praesentium' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- vero\n- inventore\n- minima\n', '2014-01-12 03:41:56', '---\n- neque\n- in\n- possimus\n- non\n- necessitatibus\n- aspernatur\n- omnis\n- et\n- molestias\n- quis\n- voluptas\n- nam\n- veritatis\n- voluptate\n- in\n- rem\n- perferendis\n- aut\n- quia\n- voluptas\n- aliquam\n- dolore\n- nemo\n- sed\n- consequatur\n- maxime\n- ratione\n- facilis\n- dolorum\n- id\n', '---\n- repudiandae\n- harum\n- est\n', '2014-01-12 03:41:56')[0m
+  [1m[35mDust::MenuItem Load (0.2ms)[0m  SELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:41:56', 1, 25, 'Dust::Page', 3, NULL, 2, '---\n- distinctio\n- natus\n- iste\n', '2014-01-12 03:41:56', '/pariatur-praesentium')[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mDust::Block Load (0.4ms)[0m  [1mSELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE "%/pariatur-praesentium%" ORDER BY weight ASC[0m
+  [1m[35m (0.6ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/amet_minima' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- ea\n- at\n- reprehenderit\n', '2014-01-12 03:42:26', '---\n- repellendus\n- labore\n- qui\n- animi\n- cum\n- temporibus\n- ex\n- doloremque\n- voluptatem\n- inventore\n- neque\n- voluptate\n- quaerat\n- autem\n- sequi\n- numquam\n- placeat\n- in\n- aut\n- id\n- quo\n- sit\n- unde\n- et\n- beatae\n- eaque\n- voluptas\n- amet\n- libero\n- nostrum\n', '---\n- tempora\n- veniam\n- repellendus\n', '2014-01-12 03:42:26')
+  [1m[36mDust::MenuItem Load (0.4ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:42:26', 1, 26, 'Dust::Page', 0, NULL, 2, '---\n- commodi\n- sit\n- architecto\n', '2014-01-12 03:42:26', '/amet_minima')
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE (`menu_items`.`url` = BINARY '/amet_minima' AND `menu_items`.`id` != 26) LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.5ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.2ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/ex.tempore' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- libero\n- ratione\n- aliquid\n', '2014-01-12 03:42:26', '---\n- tenetur\n- aut\n- dicta\n- accusamus\n- dignissimos\n- est\n- officia\n- fugiat\n- in\n- aut\n- unde\n- corrupti\n- vel\n- quam\n- error\n- at\n- optio\n- qui\n- dolor\n- deserunt\n- ipsa\n- nam\n- saepe\n- rerum\n- corporis\n- ratione\n- atque\n- repellendus\n- illo\n- vitae\n', '---\n- soluta\n- qui\n- possimus\n', '2014-01-12 03:42:26')[0m
+  [1m[35mDust::MenuItem Load (0.2ms)[0m  SELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:42:26', 1, 27, 'Dust::Page', 1, NULL, 2, '---\n- inventore\n- velit\n- omnis\n', '2014-01-12 03:42:26', '/ex.tempore')[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE (`menu_items`.`url` = BINARY '/ex.tempore' AND `menu_items`.`id` != 27) LIMIT 1[0m
+  [1m[35m (91.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/nihil_ab' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- quia\n- porro\n- exercitationem\n', '2014-01-12 03:42:27', '---\n- vero\n- voluptas\n- impedit\n- itaque\n- rerum\n- libero\n- sunt\n- repellendus\n- perspiciatis\n- molestias\n- laborum\n- omnis\n- amet\n- voluptatum\n- voluptatem\n- ut\n- ratione\n- aut\n- eligendi\n- at\n- officia\n- eaque\n- quod\n- cum\n- sint\n- voluptatibus\n- qui\n- animi\n- aspernatur\n- maiores\n', '---\n- et\n- ab\n- quos\n', '2014-01-12 03:42:27')
+  [1m[36mDust::MenuItem Load (0.3ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:42:27', 1, 28, 'Dust::Page', 1, NULL, 2, '---\n- quidem\n- nulla\n- sint\n', '2014-01-12 03:42:27', '/nihil_ab')
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mDust::Block Load (0.4ms)[0m  SELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE "%/nihil_ab%" ORDER BY weight ASC
+  [1m[36m (0.6ms)[0m  [1mROLLBACK[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/facilis-omnis' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- et\n- voluptatem\n- nostrum\n', '2014-01-12 03:43:31', '---\n- commodi\n- consequatur\n- quisquam\n- voluptatem\n- non\n- qui\n- a\n- quia\n- sunt\n- in\n- iure\n- blanditiis\n- illo\n- ex\n- quasi\n- sed\n- voluptatem\n- repudiandae\n- alias\n- perferendis\n- esse\n- eos\n- sit\n- voluptate\n- quos\n- qui\n- cum\n- velit\n- cumque\n- aspernatur\n', '---\n- quia\n- eum\n- rerum\n', '2014-01-12 03:43:31')
+  [1m[36mDust::MenuItem Load (0.3ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:43:31', 1, 29, 'Dust::Page', 4, NULL, 2, '---\n- explicabo\n- dolores\n- consectetur\n', '2014-01-12 03:43:31', '/facilis-omnis')
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.3ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE (`menu_items`.`url` = BINARY '/facilis-omnis' AND `menu_items`.`id` != 29) LIMIT 1
+  [1m[36m (32.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.4ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/atque_et' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- ducimus\n- cumque\n- autem\n', '2014-01-12 03:43:32', '---\n- sit\n- blanditiis\n- ea\n- officiis\n- et\n- ab\n- quaerat\n- illum\n- ea\n- voluptas\n- iure\n- possimus\n- sed\n- mollitia\n- distinctio\n- et\n- soluta\n- quia\n- et\n- asperiores\n- sit\n- fugiat\n- impedit\n- atque\n- commodi\n- quis\n- dignissimos\n- nemo\n- vitae\n- odio\n', '---\n- vero\n- hic\n- esse\n', '2014-01-12 03:43:32')[0m
+  [1m[35mDust::MenuItem Load (0.3ms)[0m  SELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:43:32', 1, 30, 'Dust::Page', 8, NULL, 2, '---\n- neque\n- at\n- ducimus\n', '2014-01-12 03:43:32', '/atque_et')[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mDust::Block Load (0.4ms)[0m  [1mSELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE "%/atque_et%" ORDER BY weight ASC[0m
+  [1m[35m (0.5ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mDust::Block Load (0.4ms)[0m  SELECT `blocks`.* FROM `blocks` WHERE (`show` LIKE '%/empty%') ORDER BY weight ASC
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.3ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/adipisci.voluptatem' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- ut\n- sed\n- incidunt\n', '2014-01-12 03:44:38', '---\n- sit\n- veritatis\n- dicta\n- labore\n- ea\n- non\n- qui\n- nesciunt\n- dignissimos\n- ipsum\n- natus\n- dolor\n- assumenda\n- consectetur\n- eos\n- cum\n- quia\n- placeat\n- quia\n- expedita\n- minus\n- doloremque\n- repudiandae\n- voluptatem\n- suscipit\n- unde\n- vel\n- pariatur\n- fugiat\n- ut\n', '---\n- harum\n- quibusdam\n- sequi\n', '2014-01-12 03:44:38')[0m
+  [1m[35mDust::MenuItem Load (0.3ms)[0m  SELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:44:38', 1, 31, 'Dust::Page', 0, NULL, 2, '---\n- fugit\n- consequatur\n- qui\n', '2014-01-12 03:44:38', '/adipisci.voluptatem')[0m
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::Block Exists (0.4ms)[0m  SELECT 1 AS one FROM `blocks` WHERE `blocks`.`title` = BINARY '[\"harum\", \"quibusdam\", \"sequi\"] Starter Block' LIMIT 1
+  [1m[36mSQL (67.2ms)[0m  [1mINSERT INTO `blocks` (`body`, `classes`, `column_offset`, `column_span`, `created_at`, `partial_name`, `show`, `show_title`, `title`, `updated_at`, `weight`, `where_to_show`) VALUES ('<h1> [\"harum\", \"quibusdam\", \"sequi\"] </h1> <p>New content.</p>', NULL, NULL, 'twelve columns', '2014-01-12 03:44:38', NULL, '/adipisci.voluptatem', 1, '[\"harum\", \"quibusdam\", \"sequi\"] Starter Block', '2014-01-12 03:44:38', 10, NULL)[0m
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mDust::Block Load (26.2ms)[0m  [1mSELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE "%/adipisci.voluptatem%" ORDER BY weight ASC[0m
+  [1m[35m (0.6ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/modi_dolores' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- vero\n- fugit\n- corrupti\n', '2014-01-12 03:44:38', '---\n- reiciendis\n- reprehenderit\n- sed\n- incidunt\n- sint\n- voluptas\n- eum\n- eum\n- ad\n- qui\n- commodi\n- id\n- voluptates\n- fugit\n- consequatur\n- et\n- vel\n- est\n- ut\n- veniam\n- molestiae\n- est\n- autem\n- sapiente\n- error\n- cum\n- corporis\n- tenetur\n- et\n- et\n', '---\n- delectus\n- saepe\n- dolores\n', '2014-01-12 03:44:38')
+  [1m[36mDust::MenuItem Load (0.2ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:44:38', 1, 32, 'Dust::Page', 7, NULL, 2, '---\n- qui\n- ut\n- aliquid\n', '2014-01-12 03:44:38', '/modi_dolores')
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.3ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE (`menu_items`.`url` = BINARY '/modi_dolores' AND `menu_items`.`id` != 32) LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.2ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/dolorum.qui' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('---\n- omnis\n- similique\n- eum\n', '2014-01-12 03:44:38', '---\n- corrupti\n- corporis\n- consequatur\n- eos\n- autem\n- mollitia\n- molestiae\n- repudiandae\n- laboriosam\n- unde\n- labore\n- quia\n- veniam\n- esse\n- nam\n- earum\n- omnis\n- aut\n- ea\n- tenetur\n- cumque\n- dolores\n- quo\n- enim\n- est\n- voluptates\n- nihil\n- voluptatem\n- facere\n- qui\n', '---\n- quisquam\n- sint\n- consequatur\n', '2014-01-12 03:44:38')[0m
+  [1m[35mDust::MenuItem Load (0.2ms)[0m  SELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:44:38', 1, 33, 'Dust::Page', 0, NULL, 2, '---\n- quis\n- odit\n- itaque\n', '2014-01-12 03:44:38', '/dolorum.qui')[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mDust::Block Load (0.4ms)[0m  [1mSELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE "%/dolorum.qui%" ORDER BY weight ASC[0m
+  [1m[35m (0.5ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mDust::Block Load (0.3ms)[0m  SELECT `blocks`.* FROM `blocks` WHERE (`show` LIKE '%/empty%') ORDER BY weight ASC
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.3ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/dolorem.ut' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('Adipisci cupiditate distinctio sit.', '2014-01-12 03:50:57', 'Eos perspiciatis rerum aut vel provident.', 'Dolores autem illum hic vel molestiae quia.', '2014-01-12 03:50:57')[0m
+  [1m[35mDust::MenuItem Load (0.3ms)[0m  SELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:50:57', 1, 34, 'Dust::Page', 2, NULL, 2, 'Dolores pariatur ab ex cumque ratione molestiae.', '2014-01-12 03:50:57', '/dolorem.ut')[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::Block Exists (0.3ms)[0m  SELECT 1 AS one FROM `blocks` WHERE `blocks`.`title` = BINARY 'Dolores autem illum hic vel molestiae quia. Starter Block' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `blocks` (`body`, `classes`, `column_offset`, `column_span`, `created_at`, `partial_name`, `show`, `show_title`, `title`, `updated_at`, `weight`, `where_to_show`) VALUES ('<h1> Dolores autem illum hic vel molestiae quia. </h1> <p>New content.</p>', NULL, NULL, 'twelve columns', '2014-01-12 03:50:57', NULL, '/dolorem.ut', 1, 'Dolores autem illum hic vel molestiae quia. Starter Block', '2014-01-12 03:50:57', 10, NULL)[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mDust::Block Load (0.4ms)[0m  [1mSELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE "%/dolorem.ut%" ORDER BY weight ASC[0m
+  [1m[35m (65.4ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/et.et' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('Soluta omnis ab quia dolore est.', '2014-01-12 03:50:57', 'Omnis modi reiciendis corrupti fuga.', 'Eos rem qui quod et fugiat.', '2014-01-12 03:50:57')
+  [1m[36mDust::MenuItem Load (0.3ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:50:57', 1, 35, 'Dust::Page', 5, NULL, 2, 'Natus deleniti est ut dolore esse quibusdam voluptatibus placeat.', '2014-01-12 03:50:57', '/et.et')
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.3ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE (`menu_items`.`url` = BINARY '/et.et' AND `menu_items`.`id` != 35) LIMIT 1
+  [1m[36m (13.8ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.2ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/optio-commodi' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('Laboriosam consectetur aliquid beatae.', '2014-01-12 03:50:57', 'Incidunt qui aliquam doloribus nemo fuga harum repudiandae minus.', 'Esse quod vitae est deleniti molestiae repellat ipsum.', '2014-01-12 03:50:57')[0m
+  [1m[35mDust::MenuItem Load (0.2ms)[0m  SELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:50:57', 1, 36, 'Dust::Page', 6, NULL, 2, 'Omnis eligendi architecto hic.', '2014-01-12 03:50:57', '/optio-commodi')[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mDust::Block Load (0.3ms)[0m  [1mSELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE "%/optio-commodi%" ORDER BY weight ASC[0m
+  [1m[35m (0.7ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mDust::Block Load (0.5ms)[0m  SELECT `blocks`.* FROM `blocks` WHERE (`show` LIKE '%/empty%') ORDER BY weight ASC
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.3ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/qui_earum' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('Labore aliquam nisi voluptas deserunt maiores.', '2014-01-12 03:51:42', 'Doloremque recusandae pariatur ut perspiciatis quam est ut et.', 'Officia non quia itaque eum consequuntur autem reprehenderit.', '2014-01-12 03:51:42')[0m
+  [1m[35mDust::MenuItem Load (0.4ms)[0m  SELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:51:42', 1, 37, 'Dust::Page', 8, NULL, 2, 'Voluptate unde qui molestiae vel eveniet hic quod.', '2014-01-12 03:51:42', '/qui_earum')[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::Block Exists (0.2ms)[0m  SELECT 1 AS one FROM `blocks` WHERE `blocks`.`title` = BINARY 'Officia non quia itaque eum consequuntur autem reprehenderit. Starter Block' LIMIT 1
+  [1m[36mSQL (12.3ms)[0m  [1mINSERT INTO `blocks` (`body`, `classes`, `column_offset`, `column_span`, `created_at`, `partial_name`, `show`, `show_title`, `title`, `updated_at`, `weight`, `where_to_show`) VALUES ('<h1> Officia non quia itaque eum consequuntur autem reprehenderit. </h1> <p>New content.</p>', NULL, NULL, 'twelve columns', '2014-01-12 03:51:42', NULL, '/qui_earum', 1, 'Officia non quia itaque eum consequuntur autem reprehenderit. Starter Block', '2014-01-12 03:51:42', 10, NULL)[0m
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mDust::Block Load (0.4ms)[0m  [1mSELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE "%/qui_earum%" ORDER BY weight ASC[0m
+  [1m[35m (0.5ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/dolor_consequatur' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('Rerum quisquam sint recusandae dolor quia rerum in est.', '2014-01-12 03:51:43', 'Deserunt necessitatibus blanditiis placeat esse odio ab consequuntur.', 'Perferendis omnis veniam error sit quis ut eveniet.', '2014-01-12 03:51:43')
+  [1m[36mDust::MenuItem Load (0.2ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:51:43', 1, 38, 'Dust::Page', 3, NULL, 2, 'Voluptatem animi est omnis.', '2014-01-12 03:51:43', '/dolor_consequatur')
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.2ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE (`menu_items`.`url` = BINARY '/dolor_consequatur' AND `menu_items`.`id` != 38) LIMIT 1
+  [1m[36m (0.5ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.2ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/illo_provident' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('Voluptate et ut ducimus et.', '2014-01-12 03:51:43', 'Et sit repellendus voluptas aliquam quo.', 'Quod occaecati labore ducimus consequatur omnis est adipisci.', '2014-01-12 03:51:43')[0m
+  [1m[35mDust::MenuItem Load (0.1ms)[0m  SELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:51:43', 1, 39, 'Dust::Page', 5, NULL, 2, 'Dignissimos corporis pariatur ad facilis repellat.', '2014-01-12 03:51:43', '/illo_provident')[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mDust::Block Load (0.4ms)[0m  [1mSELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE "%/illo_provident%" ORDER BY weight ASC[0m
+  [1m[35m (0.5ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mDust::Block Load (0.3ms)[0m  SELECT `blocks`.* FROM `blocks` WHERE (`show` LIKE '%/empty%') ORDER BY weight ASC
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.3ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/eius.neque' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('Asperiores mollitia est quisquam.', '2014-01-12 03:54:07', 'Autem nesciunt sit totam.', 'Quae eum possimus in deserunt provident.', '2014-01-12 03:54:07')[0m
+  [1m[35mDust::MenuItem Load (0.5ms)[0m  SELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:54:07', 1, 40, 'Dust::Page', 6, NULL, 2, 'Assumenda non et odit.', '2014-01-12 03:54:07', '/eius.neque')[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::Block Exists (0.3ms)[0m  SELECT 1 AS one FROM `blocks` WHERE `blocks`.`title` = BINARY 'Quae eum possimus in deserunt provident. Starter Block' LIMIT 1
+  [1m[36mSQL (26.8ms)[0m  [1mINSERT INTO `blocks` (`body`, `classes`, `column_offset`, `column_span`, `created_at`, `partial_name`, `show`, `show_title`, `title`, `updated_at`, `weight`, `where_to_show`) VALUES ('<h1> Quae eum possimus in deserunt provident. </h1> <p>New content.</p>', NULL, NULL, 'twelve columns', '2014-01-12 03:54:07', NULL, '/eius.neque', 1, 'Quae eum possimus in deserunt provident. Starter Block', '2014-01-12 03:54:07', 10, NULL)[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mDust::Block Load (0.3ms)[0m  [1mSELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE "%/eius.neque%" ORDER BY weight ASC[0m
+  [1m[35m (0.4ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/sed.animi' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('Beatae reiciendis est saepe.', '2014-01-12 03:54:07', 'Facilis nisi magnam illo.', 'Necessitatibus et sed sequi quae cupiditate.', '2014-01-12 03:54:07')
+  [1m[36mDust::MenuItem Load (0.2ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:54:07', 1, 41, 'Dust::Page', 8, NULL, 2, 'Atque ut eum ea.', '2014-01-12 03:54:07', '/sed.animi')
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.3ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE (`menu_items`.`url` = BINARY '/sed.animi' AND `menu_items`.`id` != 41) LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.2ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/aperiam.fuga' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('Eius quae nesciunt delectus officia ut distinctio autem.', '2014-01-12 03:54:07', 'Fugiat iure quidem quia dignissimos autem dolor velit.', 'Minus quos maxime eos laborum cupiditate aperiam modi non.', '2014-01-12 03:54:07')[0m
+  [1m[35mDust::MenuItem Load (0.2ms)[0m  SELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:54:07', 1, 42, 'Dust::Page', 6, NULL, 2, 'Consequuntur a mollitia exercitationem voluptatem eos fugit.', '2014-01-12 03:54:07', '/aperiam.fuga')[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mDust::Block Load (0.2ms)[0m  [1mSELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE "%/aperiam.fuga%" ORDER BY weight ASC[0m
+  [1m[35m (0.3ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mDust::Block Load (0.2ms)[0m  SELECT `blocks`.* FROM `blocks` WHERE (`show` LIKE '%/empty%') ORDER BY weight ASC
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.3ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/recusandae.error' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('Veniam est magnam omnis debitis illum optio non.', '2014-01-12 03:54:52', 'Sit omnis quisquam enim vero modi voluptatem.', 'Aut blanditiis aut ullam rem quod quis quo aliquid.', '2014-01-12 03:54:52')[0m
+  [1m[35mDust::MenuItem Load (0.3ms)[0m  SELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:54:52', 1, 43, 'Dust::Page', 0, NULL, 2, 'Animi consequatur incidunt saepe quae aliquid inventore dolores.', '2014-01-12 03:54:52', '/recusandae.error')[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::Block Exists (0.3ms)[0m  SELECT 1 AS one FROM `blocks` WHERE `blocks`.`title` = BINARY 'Aut blanditiis aut ullam rem quod quis quo aliquid. Starter Block' LIMIT 1
+  [1m[36mSQL (4.5ms)[0m  [1mINSERT INTO `blocks` (`body`, `classes`, `column_offset`, `column_span`, `created_at`, `partial_name`, `show`, `show_title`, `title`, `updated_at`, `weight`, `where_to_show`) VALUES ('<h1> Aut blanditiis aut ullam rem quod quis quo aliquid. </h1> <p>New content.</p>', NULL, NULL, 'twelve columns', '2014-01-12 03:54:52', NULL, '/recusandae.error', 1, 'Aut blanditiis aut ullam rem quod quis quo aliquid. Starter Block', '2014-01-12 03:54:52', 10, NULL)[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mDust::Block Load (0.4ms)[0m  [1mSELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE "%/recusandae.error%" ORDER BY weight ASC[0m
+  [1m[35m (0.8ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/adipisci.et' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('Earum in dolores deleniti delectus vitae.', '2014-01-12 03:54:52', 'Minima non eaque cumque iure pariatur itaque ducimus.', 'Aut aut et pariatur voluptas iste illum nesciunt.', '2014-01-12 03:54:52')
+  [1m[36mDust::MenuItem Load (0.2ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:54:52', 1, 44, 'Dust::Page', 3, NULL, 2, 'Sapiente delectus quo qui praesentium.', '2014-01-12 03:54:52', '/adipisci.et')
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.3ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE (`menu_items`.`url` = BINARY '/adipisci.et' AND `menu_items`.`id` != 44) LIMIT 1
+  [1m[36m (0.5ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.2ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/enim-aut' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('Odit aut enim omnis libero voluptatem.', '2014-01-12 03:54:52', 'Consequatur pariatur cum molestias enim corporis aut consequatur officiis.', 'Autem rem quibusdam id et.', '2014-01-12 03:54:52')[0m
+  [1m[35mDust::MenuItem Load (0.2ms)[0m  SELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 03:54:52', 1, 45, 'Dust::Page', 2, NULL, 2, 'Voluptatem consequatur hic non et quia voluptas a ducimus.', '2014-01-12 03:54:52', '/enim-aut')[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mDust::Block Load (0.1ms)[0m  [1mSELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE "%/enim-aut%" ORDER BY weight ASC[0m
+  [1m[35m (1.0ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mDust::Block Load (12.0ms)[0m  SELECT `blocks`.* FROM `blocks` WHERE (`show` LIKE '%/empty%') ORDER BY weight ASC
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.4ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/sint_et' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('Iste dolorem corporis illum doloremque.', '2014-01-12 04:03:24', 'Dolores excepturi distinctio officia non.', 'Expedita itaque et alias.', '2014-01-12 04:03:24')[0m
+  [1m[35mDust::MenuItem Load (0.3ms)[0m  SELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE
+  [1m[36mSQL (9.2ms)[0m  [1mINSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 04:03:24', 1, 46, 'Dust::Page', 5, NULL, 2, 'Enim cupiditate ut fugit voluptas.', '2014-01-12 04:03:24', '/sint_et')[0m
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::Block Exists (0.4ms)[0m  SELECT 1 AS one FROM `blocks` WHERE `blocks`.`title` = BINARY 'Expedita itaque et alias. Starter Block' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `blocks` (`body`, `classes`, `column_offset`, `column_span`, `created_at`, `partial_name`, `show`, `show_title`, `title`, `updated_at`, `weight`, `where_to_show`) VALUES ('<h1> Expedita itaque et alias. </h1> <p>New content.</p>', NULL, NULL, 'twelve columns', '2014-01-12 04:03:24', NULL, '/sint_et', 1, 'Expedita itaque et alias. Starter Block', '2014-01-12 04:03:24', 10, NULL)[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mDust::Block Load (17.4ms)[0m  [1mSELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE "%/sint_et%" ORDER BY weight ASC[0m
+  [1m[35m (0.9ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDust::MenuItem Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/porro-beatae' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('Quia ratione rem cumque.', '2014-01-12 04:03:24', 'Eos voluptatum provident laudantium velit.', 'Veniam quia est similique alias.', '2014-01-12 04:03:24')
+  [1m[36mDust::MenuItem Load (0.2ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 04:03:24', 1, 47, 'Dust::Page', 1, NULL, 2, 'Ut corrupti blanditiis voluptatum autem possimus qui.', '2014-01-12 04:03:24', '/porro-beatae')
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.8ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE (`menu_items`.`url` = BINARY '/porro-beatae' AND `menu_items`.`id` != 47) LIMIT 1
+  [1m[36m (16.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDust::MenuItem Exists (0.3ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE `menu_items`.`url` = BINARY '/laborum_numquam' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `pages` (`classes`, `created_at`, `meta_description`, `meta_title`, `updated_at`) VALUES ('Autem illo iusto debitis suscipit.', '2014-01-12 04:03:24', 'Culpa ut exercitationem quo est.', 'Reprehenderit ut sunt veritatis est accusantium beatae.', '2014-01-12 04:03:24')[0m
+  [1m[35mDust::MenuItem Load (0.3ms)[0m  SELECT `menu_items`.* FROM `menu_items` ORDER BY `menu_items`.`rgt` desc LIMIT 1 FOR UPDATE
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `menu_items` (`active`, `created_at`, `lft`, `linkable_id`, `linkable_type`, `menu_id`, `parent_id`, `rgt`, `title`, `updated_at`, `url`) VALUES (1, '2014-01-12 04:03:24', 1, 48, 'Dust::Page', 0, NULL, 2, 'Ipsum molestiae quo impedit eum ut ut dolor.', '2014-01-12 04:03:24', '/laborum_numquam')[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mDust::Block Load (0.2ms)[0m  [1mSELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE "%/laborum_numquam%" ORDER BY weight ASC[0m
+  [1m[35m (0.3ms)[0m  ROLLBACK

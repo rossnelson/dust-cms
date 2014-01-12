@@ -31,7 +31,6 @@ module Dust
 
       private
 
-
       def build_sections
         @sections.each do |section_attr|
           section = ::Dust::Section.find_or_create_by_id_and_page_id(section_attr[0], @page.id)
@@ -84,12 +83,12 @@ module Dust
       def create_starter_block
         @block = Block.new(
           :show_title => true,
-          :title => "#{@page.meta_title} Page Content", 
+          :title => "#{@page.meta_title} Starter Block", 
           :body => "<h1> #{@page.meta_title} </h1> <p>New content.</p>", 
           :column_span => "twelve columns",
           :where_to_show => Dust.config.default_region,
           :show => "/#{@page.filename}",
-          :weight => 0
+          :weight => 10
         )
       end
 
