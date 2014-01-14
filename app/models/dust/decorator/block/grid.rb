@@ -18,13 +18,28 @@ module Dust::Decorator
 
         def regions
           pretty_regions = []
-          Dust.config.regions.each do |region|
-            pretty_regions << [region.humanize.titleize, region]
-          end
-          Dust::Page.all.each do |page|
-            pretty_regions.concat page.sections.map{ |s| ["#{page.nav_link} | #{s.title}", s.slug] } unless page.sections.blank?
-          end
+          pretty_regions.concat default_regions
+          pretty_regions.concat page_regions
           pretty_regions
+        end
+
+        private
+
+        def default_regions
+          Dust.config.regions.map do |region|
+            [region.humanize.titleize, region]
+          end
+        end
+
+        def page_regions
+          regions = []
+          Dust::Page.all.each do |page|
+            sections = page.sections.map{ |s| 
+              ["#{page.nav_link} | #{s.title}", s.slug] 
+            }
+            regions.concat sections
+          end
+          regions
         end
 
       end

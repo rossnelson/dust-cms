@@ -1,4 +1,5 @@
 require "dust/engine"
+require "dust/seed"
 
 require "sorcery"
 require "declarative_authorization"
@@ -19,10 +20,12 @@ require "jbuilder"
 require "mustache"
 require "haml-rails"
 require "numbers_and_words"
+require "sass"
 
 unless Rails.env.production?
   require "thin"
-  #require "better_errors"
+  require "better_errors"
+  require "quiet_assets"
 end
 
 module Dust

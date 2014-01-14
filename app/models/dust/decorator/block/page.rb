@@ -9,8 +9,6 @@ module Dust::Decorator
           pages << page if url_list.include?(page.menu_item.url)
           pages << page if url_list.blank?
         end
-        puts url_list.inspect
-        puts pages.inspect
         pages
       end
 

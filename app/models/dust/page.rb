@@ -8,6 +8,7 @@ module Dust
     include Dust::Menu::ItemDependency
 
     validates_presence_of :meta_title
+
     has_many :blocks, 
       :finder_sql => proc{"SELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE \"%/#{filename}%\" ORDER BY weight ASC"}
 

@@ -14,4 +14,23 @@ describe Dust::Builder::Page do
     @page.blocks.first.should be_an_instance_of Dust::Block
   end
 
+  it "should add sections to a page" do
+    pending
+    section_attr = {:sections => [
+      [0, {
+        :title => Faker::Lorem.sentence(3),
+        :classes => Faker::Lorem.sentence(2),
+        :_destroy => "0"
+      }]
+    ]}
+
+    builder = Dust::Builder::Page.new(
+      :page => @page,
+      :sections => section_attr
+    )
+
+    builder.save
+    puts @page.sections
+  end
+
 end

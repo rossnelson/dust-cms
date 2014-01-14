@@ -1,5 +1,3 @@
-require_relative './seed.rb'
-
 namespace :dust do
   desc "Dust cp migrations, migrate, and seed data"
   task :init => :environment do
@@ -14,6 +12,7 @@ namespace :dust do
 
   desc "Generate all Dust app Data"
   task :seed => :environment do
+    Rake::Task['db:reset'].invoke
     Dust::Seed.data
   end
 

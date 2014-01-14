@@ -4,8 +4,8 @@ require 'faker'
 FactoryGirl.define do
   factory :section, :class => Dust::Section do
 
-    title {Faker::Lorem.sentence}
-    classes {Faker::Lorem.sentence}
+    title {Faker::Lorem.sentence(3)}
+    classes {Faker::Lorem.sentence(2)}
     association :page, :factory => :page
 
   end

@@ -34,6 +34,9 @@ Gem::Specification.new do |s|
   s.add_dependency "sorcery"
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails'
+  s.add_dependency 'sass-rails',   '~> 3.2.3'
+  s.add_dependency 'coffee-rails', '~> 3.2.1'
+  s.add_dependency 'uglifier', '>= 1.0.3'
 
   s.add_dependency "sorcery"
   s.add_dependency "declarative_authorization"

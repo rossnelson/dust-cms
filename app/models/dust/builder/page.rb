@@ -14,6 +14,7 @@ module Dust
         if @page.errors.blank?
           @page.save
           @block.save
+          @page
         else
           false
         end
@@ -24,6 +25,7 @@ module Dust
         update_blocks
         if @page.errors.blank?
           @page.update_attributes(@page_attrs)
+          @page
         else
           false
         end

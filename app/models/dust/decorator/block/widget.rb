@@ -7,7 +7,6 @@ module Dust::Decorator
         def widget_list
           files = []
           paths = widget_filenames
-          puts paths
           paths.each do |filename|
             if filename[0] != "." # if file is not hidden
               files.push filename.sub('_', '').gsub('.html.haml', '')
@@ -15,6 +14,8 @@ module Dust::Decorator
           end
           files
         end
+
+        private
 
         def widget_files
           paths = []
@@ -31,7 +32,7 @@ module Dust::Decorator
           partial_path = path.gsub("#{Dust.root}/app/views/widgets/", "").gsub("#{Rails.root}/app/views/widgets/", "")
           partial_path
         end
-      end      
+      end
 
     end
   end

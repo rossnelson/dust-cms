@@ -6,6 +6,7 @@ module Dust
 
     belongs_to :menu
     belongs_to :linkable, :polymorphic => true
+
     validates_uniqueness_of :url
 
     scope :sitemap, :select => 'url, created_at, updated_at', :limit => 50000
