@@ -3273,3 +3273,361 @@ Processing by FrontEnd::PageController#show as HTML
   Rendered /Users/ross/code/dust/dust-cms/app/views/layouts/app_partials/_analytics.html.haml (0.1ms)
   [1m[36mSQL (0.7ms)[0m  [1mUPDATE `users` SET `last_activity_at` = '2014-01-13 14:26:55' WHERE `users`.`id` = 1[0m
 Completed 200 OK in 117.2ms (Views: 106.5ms | ActiveRecord: 4.4ms)
+Connecting to database specified by database.yml
+  [1m[36mDust::SiteWide Load (48.8ms)[0m  [1mSELECT `site_wides`.* FROM `site_wides` ORDER BY category, name[0m
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-13 21:19:23 -0500
+Processing by FrontEnd::PageController#show as HTML
+  Parameters: {"filename"=>"welcome"}
+  [1m[35mDust::User Load (12.9ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mDust::SiteWide Load (0.2ms)[0m  [1mSELECT `site_wides`.* FROM `site_wides` ORDER BY category, name[0m
+  [1m[35mDust::Block Load (0.2ms)[0m  SELECT `blocks`.* FROM `blocks` ORDER BY weight ASC
+  [1m[36mDust::Page Load (19.9ms)[0m  [1mSELECT `pages`.* FROM `pages` INNER JOIN `menu_items` ON `menu_items`.`linkable_id` = `pages`.`id` AND `menu_items`.`linkable_type` = 'Dust::Page' WHERE `menu_items`.`url` = '/welcome' LIMIT 1[0m
+  [1m[35mDust::MenuItem Load (0.3ms)[0m  SELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`linkable_id` = 5 AND `menu_items`.`linkable_type` = 'Dust::Page' LIMIT 1
+  [1m[36mDust::Role Load (31.8ms)[0m  [1mSELECT `roles`.* FROM `roles` WHERE `roles`.`id` = 1 LIMIT 1[0m
+  Rendered /Users/ross/code/dust/dust-cms/app/views/front_end/page/_admin.html.haml (85.3ms)
+  [1m[35mDust::Section Load (0.3ms)[0m  SELECT `sections`.* FROM `sections` WHERE `sections`.`parent_id` IS NULL AND `sections`.`page_id` = 5 ORDER BY `sections`.`lft`
+  [1m[36mDust::Page Load (0.3ms)[0m  [1mSELECT `pages`.* FROM `pages` WHERE `pages`.`id` = 5 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`linkable_id` = 5 AND `menu_items`.`linkable_type` = 'Dust::Page' LIMIT 1
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/blocks/_normal_block_content.html.haml (16.1ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/blocks/_block.html.haml (42.5ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/front_end/page/show.html.haml within layouts/front_end (244.1ms)
+Compiled core/reset/reset.css  (0ms)  (pid 59788)
+Compiled core/reset/text.css  (0ms)  (pid 59788)
+Compiled core/plugins/skeleton.css  (0ms)  (pid 59788)
+Compiled core/plugins/tipTip.css  (0ms)  (pid 59788)
+Compiled core/app/defaults.css  (58ms)  (pid 59788)
+Compiled core.css  (444ms)  (pid 59788)
+Compiled front_end/app/just-delete-me-and-start-over.css  (12ms)  (pid 59788)
+Compiled front_end.css  (627ms)  (pid 59788)
+Compiled application.css  (10ms)  (pid 59788)
+  [1m[36mDust::Menu Load (0.4ms)[0m  [1mSELECT `menus`.* FROM `menus` WHERE `menus`.`id` = 1 LIMIT 1[0m
+  [1m[35mDust::MenuItem Load (0.5ms)[0m  SELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`menu_id` = 1 AND `menu_items`.`parent_id` IS NULL AND `menu_items`.`active` = 1 ORDER BY `menu_items`.`lft`
+  [1m[36mDust::MenuItem Load (25.8ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE (`menu_items`.`lft` >= 17 AND `menu_items`.`lft` < 18) AND (`menu_items`.id != 13) ORDER BY `menu_items`.`lft`[0m
+  [1m[35mDust::MenuItem Load (0.5ms)[0m  SELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`parent_id` IS NULL AND (active = 1) ORDER BY `menu_items`.`lft`
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE (`menu_items`.`lft` >= 17 AND `menu_items`.`lft` < 18) AND (`menu_items`.id != 13) ORDER BY `menu_items`.`lft`[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `menu_items`.* FROM `menu_items` WHERE (`menu_items`.`lft` >= 17 AND `menu_items`.`lft` < 18) AND (`menu_items`.id != 13) ORDER BY `menu_items`.`lft`
+  [1m[36mDust::MenuItem Load (0.2ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`parent_id` IS NULL ORDER BY `menu_items`.`lft` DESC LIMIT 1[0m
+  Rendered /Users/ross/code/dust/dust-cms/app/views/layouts/app_partials/_application_tree.html.haml (50.4ms)
+  [1m[35mDust::MenuItem Load (0.3ms)[0m  SELECT `menu_items`.* FROM `menu_items` WHERE (`menu_items`.`lft` >= 19 AND `menu_items`.`lft` < 20) AND (`menu_items`.id != 15) ORDER BY `menu_items`.`lft`
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`parent_id` IS NULL AND (active = 1) ORDER BY `menu_items`.`lft`[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `menu_items`.* FROM `menu_items` WHERE (`menu_items`.`lft` >= 19 AND `menu_items`.`lft` < 20) AND (`menu_items`.id != 15) ORDER BY `menu_items`.`lft`
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE (`menu_items`.`lft` >= 19 AND `menu_items`.`lft` < 20) AND (`menu_items`.id != 15) ORDER BY `menu_items`.`lft`[0m
+  Rendered /Users/ross/code/dust/dust-cms/app/views/layouts/app_partials/_application_tree.html.haml (2.4ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/widgets/_site_menu.html.haml (137.0ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/blocks/_block.html.haml (160.3ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/users/_user_bar.html.haml (2.0ms)
+Compiled jquery.js  (6ms)  (pid 59788)
+Compiled jquery_ujs.js  (0ms)  (pid 59788)
+Compiled jquery.ui.core.js  (0ms)  (pid 59788)
+Compiled jquery.ui.widget.js  (0ms)  (pid 59788)
+Compiled jquery.ui.accordion.js  (175ms)  (pid 59788)
+Compiled jquery.ui.position.js  (0ms)  (pid 59788)
+Compiled jquery.ui.menu.js  (102ms)  (pid 59788)
+Compiled jquery.ui.autocomplete.js  (169ms)  (pid 59788)
+Compiled jquery.ui.button.js  (2ms)  (pid 59788)
+Compiled jquery.ui.datepicker.js  (1ms)  (pid 59788)
+Compiled jquery.ui.mouse.js  (1ms)  (pid 59788)
+Compiled jquery.ui.draggable.js  (62ms)  (pid 59788)
+Compiled jquery.ui.resizable.js  (2ms)  (pid 59788)
+Compiled jquery.ui.dialog.js  (225ms)  (pid 59788)
+Compiled jquery.ui.droppable.js  (6ms)  (pid 59788)
+Compiled jquery.ui.effect.js  (1ms)  (pid 59788)
+Compiled jquery.ui.effect-blind.js  (64ms)  (pid 59788)
+Compiled jquery.ui.effect-bounce.js  (1ms)  (pid 59788)
+Compiled jquery.ui.effect-clip.js  (1ms)  (pid 59788)
+Compiled jquery.ui.effect-drop.js  (2ms)  (pid 59788)
+Compiled jquery.ui.effect-explode.js  (1ms)  (pid 59788)
+Compiled jquery.ui.effect-fade.js  (2ms)  (pid 59788)
+Compiled jquery.ui.effect-fold.js  (1ms)  (pid 59788)
+Compiled jquery.ui.effect-highlight.js  (2ms)  (pid 59788)
+Compiled jquery.ui.effect-pulsate.js  (1ms)  (pid 59788)
+Compiled jquery.ui.effect-scale.js  (2ms)  (pid 59788)
+Compiled jquery.ui.effect-shake.js  (1ms)  (pid 59788)
+Compiled jquery.ui.effect-slide.js  (0ms)  (pid 59788)
+Compiled jquery.ui.effect-transfer.js  (0ms)  (pid 59788)
+Compiled jquery.ui.progressbar.js  (1ms)  (pid 59788)
+Compiled jquery.ui.selectable.js  (2ms)  (pid 59788)
+Compiled jquery.ui.slider.js  (2ms)  (pid 59788)
+Compiled jquery.ui.sortable.js  (2ms)  (pid 59788)
+Compiled jquery.ui.spinner.js  (2ms)  (pid 59788)
+Compiled jquery.ui.tabs.js  (1ms)  (pid 59788)
+Compiled jquery.ui.tooltip.js  (3ms)  (pid 59788)
+Compiled jquery.ui.all.js  (2386ms)  (pid 59788)
+Compiled core/nestedsortables.js  (0ms)  (pid 59788)
+Compiled core/serializelist.js  (0ms)  (pid 59788)
+Compiled core/tipTip.js  (0ms)  (pid 59788)
+Compiled core.js  (168ms)  (pid 59788)
+Compiled front_end/application-main.js  (531ms)  (pid 59788)
+Compiled front_end/map.js  (0ms)  (pid 59788)
+Compiled rails.validations.js  (0ms)  (pid 59788)
+Compiled front_end.js  (3583ms)  (pid 59788)
+Compiled application.js  (7ms)  (pid 59788)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/layouts/app_partials/_analytics.html.haml (2.6ms)
+  [1m[35mSQL (39.5ms)[0m  UPDATE `users` SET `last_activity_at` = '2014-01-14 02:19:29' WHERE `users`.`id` = 1
+Completed 200 OK in 5830.0ms (Views: 5088.1ms | ActiveRecord: 170.3ms)
+
+
+Started GET "/dust/dashboard/show" for 127.0.0.1 at 2014-01-13 21:19:33 -0500
+Processing by Dust::DashboardController#show as HTML
+  [1m[36mDust::User Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mDust::Role Load (0.1ms)[0m  SELECT `roles`.* FROM `roles` WHERE `roles`.`id` = 1 LIMIT 1
+  [1m[36mDust::SiteWide Load (0.2ms)[0m  [1mSELECT `site_wides`.* FROM `site_wides` ORDER BY category, name[0m
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/dashboard/_options.html.haml (1.1ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/dashboard/_options.html.haml (0.2ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/dashboard/_options.html.haml (0.2ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/dashboard/_options.html.haml (0.2ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/dashboard/_options.html.haml (0.2ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/dashboard/_options.html.haml (0.2ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/dashboard/_options.html.haml (0.2ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/dashboard/show.html.haml within layouts/cms (18.8ms)
+Compiled cms.css  (195ms)  (pid 59788)
+Compiled cms/lib/underscore.js  (0ms)  (pid 59788)
+Compiled cms/lib/backbone.js  (0ms)  (pid 59788)
+Compiled cms/lib/fineuploader-3.0.js  (0ms)  (pid 59788)
+Compiled cms/lib/handlebars.js  (1ms)  (pid 59788)
+Compiled cms/lib/spin.js  (0ms)  (pid 59788)
+Compiled cms/dust.js  (97ms)  (pid 59788)
+Compiled cms/dust/defaults.js  (80ms)  (pid 59788)
+Compiled cms/dust/gallery.js  (81ms)  (pid 59788)
+Compiled cms/dust/nav.js  (122ms)  (pid 59788)
+Compiled cms/dust/sections.js  (93ms)  (pid 59788)
+Compiled cms/dust/sortables.js  (137ms)  (pid 59788)
+Compiled cms/dust/window.js  (67ms)  (pid 59788)
+Compiled cms/dust/gallery/photo.js  (60ms)  (pid 59788)
+Compiled cms/dust/gallery/photo_view.js  (114ms)  (pid 59788)
+Compiled cms/dust/gallery/photos.js  (106ms)  (pid 59788)
+Compiled cms/dust/gallery/photos_view.js  (68ms)  (pid 59788)
+Compiled cms/dust/gallery/router.js  (78ms)  (pid 59788)
+Compiled ckeditor/ckeditor.js  (50ms)  (pid 59788)
+Compiled ckeditor/init.js  (156ms)  (pid 59788)
+Compiled cms.js  (2290ms)  (pid 59788)
+  [1m[35mDust::Menu Load (0.4ms)[0m  SELECT `menus`.* FROM `menus` WHERE `menus`.`id` = 2 LIMIT 1
+  [1m[36mDust::MenuItem Load (0.3ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`menu_id` = 2 AND `menu_items`.`parent_id` IS NULL AND `menu_items`.`active` = 1 ORDER BY `menu_items`.`lft`[0m
+  Rendered /Users/ross/code/dust/dust-cms/app/views/layouts/cms_partials/_nav.html.haml (7.3ms)
+  [1m[35mSQL (0.6ms)[0m  UPDATE `users` SET `last_activity_at` = '2014-01-14 02:19:36' WHERE `users`.`id` = 1
+Completed 200 OK in 2834.3ms (Views: 2828.1ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/dust/pages" for 127.0.0.1 at 2014-01-13 21:19:52 -0500
+Processing by Dust::PagesController#index as HTML
+  [1m[36mDust::User Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mDust::Role Load (0.2ms)[0m  SELECT `roles`.* FROM `roles` WHERE `roles`.`id` = 1 LIMIT 1
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/pages/_search.html.haml (1.8ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `pages` [0m
+  [1m[35mDust::Page Load (0.2ms)[0m  SELECT `pages`.* FROM `pages` ORDER BY meta_title LIMIT 12 OFFSET 0
+  [1m[36mDust::MenuItem Load (0.2ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`linkable_id` = 7 AND `menu_items`.`linkable_type` = 'Dust::Page' LIMIT 1[0m
+  [1m[35mDust::MenuItem Load (0.1ms)[0m  SELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`linkable_id` = 5 AND `menu_items`.`linkable_type` = 'Dust::Page' LIMIT 1
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/pages/index.html.haml within layouts/cms (11.4ms)
+  [1m[36mDust::Menu Load (0.3ms)[0m  [1mSELECT `menus`.* FROM `menus` WHERE `menus`.`id` = 2 LIMIT 1[0m
+  [1m[35mDust::MenuItem Load (0.2ms)[0m  SELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`menu_id` = 2 AND `menu_items`.`parent_id` IS NULL AND `menu_items`.`active` = 1 ORDER BY `menu_items`.`lft`
+  Rendered /Users/ross/code/dust/dust-cms/app/views/layouts/cms_partials/_nav.html.haml (2.6ms)
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE `users` SET `last_activity_at` = '2014-01-14 02:19:52' WHERE `users`.`id` = 1[0m
+Completed 200 OK in 39.1ms (Views: 33.5ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/dust/pages/7/edit" for 127.0.0.1 at 2014-01-13 21:19:56 -0500
+Processing by Dust::PagesController#edit as HTML
+  Parameters: {"id"=>"7"}
+  [1m[35mDust::User Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mDust::Role Load (0.1ms)[0m  [1mSELECT `roles`.* FROM `roles` WHERE `roles`.`id` = 1 LIMIT 1[0m
+  [1m[35mDust::Page Load (0.1ms)[0m  SELECT `pages`.* FROM `pages` WHERE `pages`.`id` = 7 LIMIT 1
+  [1m[36mDust::MenuItem Load (0.2ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`linkable_id` = 7 AND `menu_items`.`linkable_type` = 'Dust::Page' LIMIT 1[0m
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/pages/_search.html.haml (0.9ms)
+  [1m[35mDust::Menu Load (0.3ms)[0m  SELECT `menus`.* FROM `menus` 
+  [1m[36mDust::Section Load (0.3ms)[0m  [1mSELECT `sections`.* FROM `sections` WHERE `sections`.`parent_id` IS NULL AND `sections`.`page_id` = 7 ORDER BY `sections`.`lft`[0m
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/pages/_form.html.haml (36.8ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/pages/edit.html.haml within layouts/cms (56.3ms)
+  [1m[35mDust::Menu Load (0.3ms)[0m  SELECT `menus`.* FROM `menus` WHERE `menus`.`id` = 2 LIMIT 1
+  [1m[36mDust::MenuItem Load (0.2ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`menu_id` = 2 AND `menu_items`.`parent_id` IS NULL AND `menu_items`.`active` = 1 ORDER BY `menu_items`.`lft`[0m
+  Rendered /Users/ross/code/dust/dust-cms/app/views/layouts/cms_partials/_nav.html.haml (2.5ms)
+  [1m[35mSQL (0.7ms)[0m  UPDATE `users` SET `last_activity_at` = '2014-01-14 02:19:56' WHERE `users`.`id` = 1
+Completed 200 OK in 97.9ms (Views: 91.1ms | ActiveRecord: 2.6ms)
+
+
+Started PUT "/dust/pages/7" for 127.0.0.1 at 2014-01-13 21:20:06 -0500
+Processing by Dust::PagesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"d34TCrGCKH8THUTydxu7XvMsV67ISaPpq/LdNW5GSwI=", "dust_page"=>{"meta_title"=>"About Us", "meta_description"=>"", "classes"=>"", "active"=>"1", "menu"=>"1", "nav_link"=>"About Us", "filename"=>"about-us"}, "sections"=>{"1389665998805"=>{"_destroy"=>"", "title"=>"test", "classes"=>""}, "1389666002819"=>{"_destroy"=>"", "title"=>"another test", "classes"=>""}}, "commit"=>"Update Page", "id"=>"7"}
+  [1m[36mDust::User Load (0.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mDust::Role Load (0.3ms)[0m  SELECT `roles`.* FROM `roles` WHERE `roles`.`id` = 1 LIMIT 1
+  [1m[36mDust::Page Load (0.3ms)[0m  [1mSELECT `pages`.* FROM `pages` WHERE `pages`.`id` = 7 LIMIT 1[0m
+  [1m[35mDust::MenuItem Load (0.4ms)[0m  SELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`linkable_id` = 7 AND `menu_items`.`linkable_type` = 'Dust::Page' LIMIT 1
+  [1m[36mDust::Section Load (0.3ms)[0m  [1mSELECT `sections`.* FROM `sections` WHERE `sections`.`parent_id` IS NULL AND `sections`.`id` = 1389665998805 AND `sections`.`page_id` = 7 ORDER BY `sections`.`lft` LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mDust::Section Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM `sections` WHERE `sections`.`title` IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mDust::Section Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM `sections` WHERE `sections`.`title` = BINARY 'test' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT 1 AS one FROM `sections` WHERE `sections`.`title` = BINARY 'test' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36mDust::Section Load (0.2ms)[0m  [1mSELECT `sections`.* FROM `sections` WHERE `sections`.`parent_id` IS NULL AND `sections`.`id` = 1389666002819 AND `sections`.`page_id` = 7 ORDER BY `sections`.`lft` LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT 1 AS one FROM `sections` WHERE `sections`.`title` IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mDust::Section Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM `sections` WHERE `sections`.`title` = BINARY 'another test' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT 1 AS one FROM `sections` WHERE `sections`.`title` = BINARY 'another test' LIMIT 1[0m
+  [1m[35mDust::Section Load (0.2ms)[0m  SELECT `sections`.* FROM `sections` ORDER BY `sections`.`rgt` desc LIMIT 1 FOR UPDATE
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `sections` (`classes`, `created_at`, `lft`, `page_id`, `parent_id`, `position`, `rgt`, `title`, `updated_at`) VALUES ('', '2014-01-14 02:20:07', 3, 7, NULL, NULL, 4, 'another test', '2014-01-14 02:20:07')[0m
+  [1m[35m (53.7ms)[0m  COMMIT
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/pages/_search.html.haml (1.0ms)
+  [1m[36mDust::Menu Load (0.2ms)[0m  [1mSELECT `menus`.* FROM `menus` [0m
+  [1m[35mDust::Section Load (0.3ms)[0m  SELECT `sections`.* FROM `sections` WHERE `sections`.`parent_id` IS NULL AND `sections`.`page_id` = 7 ORDER BY `sections`.`lft`
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/pages/_form.html.haml (76.4ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/pages/edit.html.haml within layouts/cms (79.3ms)
+  [1m[36mDust::Menu Load (0.3ms)[0m  [1mSELECT `menus`.* FROM `menus` WHERE `menus`.`id` = 2 LIMIT 1[0m
+  [1m[35mDust::MenuItem Load (0.2ms)[0m  SELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`menu_id` = 2 AND `menu_items`.`parent_id` IS NULL AND `menu_items`.`active` = 1 ORDER BY `menu_items`.`lft`
+  Rendered /Users/ross/code/dust/dust-cms/app/views/layouts/cms_partials/_nav.html.haml (2.7ms)
+  [1m[36mSQL (0.7ms)[0m  [1mUPDATE `users` SET `last_activity_at` = '2014-01-14 02:20:07' WHERE `users`.`id` = 1[0m
+Completed 200 OK in 190.2ms (Views: 103.5ms | ActiveRecord: 58.9ms)
+
+
+Started PUT "/dust/pages/7" for 127.0.0.1 at 2014-01-13 21:20:14 -0500
+Processing by Dust::PagesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"d34TCrGCKH8THUTydxu7XvMsV67ISaPpq/LdNW5GSwI=", "dust_page"=>{"meta_title"=>"About Us", "meta_description"=>"", "classes"=>"", "active"=>"1", "menu"=>"1", "nav_link"=>"About Us", "filename"=>"about-us"}, "sections"=>{"2"=>{"_destroy"=>"", "title"=>"another test", "classes"=>""}, "1"=>{"_destroy"=>"", "title"=>"3 test", "classes"=>""}}, "commit"=>"Update Page", "id"=>"7"}
+  [1m[35mDust::User Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mDust::Role Load (0.2ms)[0m  [1mSELECT `roles`.* FROM `roles` WHERE `roles`.`id` = 1 LIMIT 1[0m
+  [1m[35mDust::Page Load (0.2ms)[0m  SELECT `pages`.* FROM `pages` WHERE `pages`.`id` = 7 LIMIT 1
+  [1m[36mDust::MenuItem Load (0.2ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`linkable_id` = 7 AND `menu_items`.`linkable_type` = 'Dust::Page' LIMIT 1[0m
+  [1m[35mDust::Section Load (0.2ms)[0m  SELECT `sections`.* FROM `sections` WHERE `sections`.`parent_id` IS NULL AND `sections`.`id` = 2 AND `sections`.`page_id` = 7 ORDER BY `sections`.`lft` LIMIT 1
+  [1m[36mDust::Section Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM `sections` WHERE (`sections`.`title` = BINARY 'another test' AND `sections`.`id` != 2) LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT 1 AS one FROM `sections` WHERE (`sections`.`title` = BINARY 'another test' AND `sections`.`id` != 2) LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36mDust::Section Load (0.2ms)[0m  [1mSELECT `sections`.* FROM `sections` WHERE `sections`.`parent_id` IS NULL AND `sections`.`id` = 1 AND `sections`.`page_id` = 7 ORDER BY `sections`.`lft` LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mDust::Section Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM `sections` WHERE `sections`.`title` IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mDust::Section Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM `sections` WHERE `sections`.`title` = BINARY '3 test' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT 1 AS one FROM `sections` WHERE `sections`.`title` = BINARY '3 test' LIMIT 1[0m
+  [1m[35mDust::Section Load (0.1ms)[0m  SELECT `sections`.* FROM `sections` ORDER BY `sections`.`rgt` desc LIMIT 1 FOR UPDATE
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `sections` (`classes`, `created_at`, `lft`, `page_id`, `parent_id`, `position`, `rgt`, `title`, `updated_at`) VALUES ('', '2014-01-14 02:20:14', 5, 7, NULL, NULL, 6, '3 test', '2014-01-14 02:20:14')[0m
+  [1m[35m (4.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mDust::MenuItem Exists (0.3ms)[0m  SELECT 1 AS one FROM `menu_items` WHERE (`menu_items`.`url` = BINARY '/about-us' AND `menu_items`.`id` != 15) LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/about-us
+  [1m[35mSQL (0.5ms)[0m  UPDATE `users` SET `last_activity_at` = '2014-01-14 02:20:14' WHERE `users`.`id` = 1
+Completed 302 Found in 25.4ms (ActiveRecord: 7.3ms)
+
+
+Started GET "/about-us" for 127.0.0.1 at 2014-01-13 21:20:14 -0500
+Processing by FrontEnd::PageController#show as HTML
+  Parameters: {"filename"=>"about-us"}
+  [1m[36mDust::User Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mDust::SiteWide Load (0.2ms)[0m  SELECT `site_wides`.* FROM `site_wides` ORDER BY category, name
+  [1m[36mDust::Block Load (0.2ms)[0m  [1mSELECT `blocks`.* FROM `blocks` ORDER BY weight ASC[0m
+  [1m[35mDust::Page Load (0.2ms)[0m  SELECT `pages`.* FROM `pages` INNER JOIN `menu_items` ON `menu_items`.`linkable_id` = `pages`.`id` AND `menu_items`.`linkable_type` = 'Dust::Page' WHERE `menu_items`.`url` = '/about-us' LIMIT 1
+  [1m[36mDust::MenuItem Load (0.4ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`linkable_id` = 7 AND `menu_items`.`linkable_type` = 'Dust::Page' LIMIT 1[0m
+  [1m[35mDust::Role Load (0.3ms)[0m  SELECT `roles`.* FROM `roles` WHERE `roles`.`id` = 1 LIMIT 1
+  Rendered /Users/ross/code/dust/dust-cms/app/views/front_end/page/_admin.html.haml (2.9ms)
+  [1m[36mDust::Section Load (0.3ms)[0m  [1mSELECT `sections`.* FROM `sections` WHERE `sections`.`parent_id` IS NULL AND `sections`.`page_id` = 7 ORDER BY `sections`.`lft`[0m
+  [1m[35mDust::Page Load (0.2ms)[0m  SELECT `pages`.* FROM `pages` WHERE `pages`.`id` = 7 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`linkable_id` = 7 AND `menu_items`.`linkable_type` = 'Dust::Page' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `pages`.* FROM `pages` WHERE `pages`.`id` = 7 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`linkable_id` = 7 AND `menu_items`.`linkable_type` = 'Dust::Page' LIMIT 1[0m
+  Rendered /Users/ross/code/dust/dust-cms/app/views/front_end/page/show.html.haml within layouts/front_end (9.7ms)
+  [1m[35mDust::Menu Load (0.2ms)[0m  SELECT `menus`.* FROM `menus` WHERE `menus`.`id` = 1 LIMIT 1
+  [1m[36mDust::MenuItem Load (0.2ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`menu_id` = 1 AND `menu_items`.`parent_id` IS NULL AND `menu_items`.`active` = 1 ORDER BY `menu_items`.`lft`[0m
+  [1m[35mDust::MenuItem Load (0.2ms)[0m  SELECT `menu_items`.* FROM `menu_items` WHERE (`menu_items`.`lft` >= 17 AND `menu_items`.`lft` < 18) AND (`menu_items`.id != 13) ORDER BY `menu_items`.`lft`
+  [1m[36mDust::MenuItem Load (0.5ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`parent_id` IS NULL AND (active = 1) ORDER BY `menu_items`.`lft`[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `menu_items`.* FROM `menu_items` WHERE (`menu_items`.`lft` >= 17 AND `menu_items`.`lft` < 18) AND (`menu_items`.id != 13) ORDER BY `menu_items`.`lft`
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE (`menu_items`.`lft` >= 17 AND `menu_items`.`lft` < 18) AND (`menu_items`.id != 13) ORDER BY `menu_items`.`lft`[0m
+  Rendered /Users/ross/code/dust/dust-cms/app/views/layouts/app_partials/_application_tree.html.haml (5.2ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`parent_id` IS NULL AND (active = 1) ORDER BY `menu_items`.`lft`
+  [1m[36mDust::MenuItem Load (0.5ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`parent_id` IS NULL ORDER BY `menu_items`.`lft` DESC LIMIT 1[0m
+  Rendered /Users/ross/code/dust/dust-cms/app/views/layouts/app_partials/_application_tree.html.haml (2.7ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/widgets/_site_menu.html.haml (14.1ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/blocks/_block.html.haml (19.5ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/blocks/_normal_block_content.html.haml (0.2ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/blocks/_block.html.haml (2.6ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/users/_user_bar.html.haml (0.4ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/layouts/app_partials/_analytics.html.haml (0.1ms)
+  [1m[35mSQL (0.6ms)[0m  UPDATE `users` SET `last_activity_at` = '2014-01-14 02:20:14' WHERE `users`.`id` = 1
+Completed 200 OK in 68.2ms (Views: 57.5ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/welcome" for 127.0.0.1 at 2014-01-13 22:15:42 -0500
+Processing by FrontEnd::PageController#show as HTML
+  Parameters: {"filename"=>"welcome"}
+  [1m[36mDust::User Load (0.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mDust::SiteWide Load (0.4ms)[0m  SELECT `site_wides`.* FROM `site_wides` ORDER BY category, name
+  [1m[36mDust::Block Load (0.4ms)[0m  [1mSELECT `blocks`.* FROM `blocks` ORDER BY weight ASC[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :root_redirect rendered or redirected
+Completed 301 Moved Permanently in 141.1ms (ActiveRecord: 34.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-13 22:15:42 -0500
+Processing by FrontEnd::PageController#show as HTML
+  Parameters: {"filename"=>"welcome"}
+  [1m[35mDust::User Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mDust::SiteWide Load (0.2ms)[0m  [1mSELECT `site_wides`.* FROM `site_wides` ORDER BY category, name[0m
+  [1m[35mDust::Block Load (0.1ms)[0m  SELECT `blocks`.* FROM `blocks` ORDER BY weight ASC
+  [1m[36mDust::Page Load (0.4ms)[0m  [1mSELECT `pages`.* FROM `pages` INNER JOIN `menu_items` ON `menu_items`.`linkable_id` = `pages`.`id` AND `menu_items`.`linkable_type` = 'Dust::Page' WHERE `menu_items`.`url` = '/welcome' LIMIT 1[0m
+  [1m[35mDust::MenuItem Load (0.2ms)[0m  SELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`linkable_id` = 5 AND `menu_items`.`linkable_type` = 'Dust::Page' LIMIT 1
+  [1m[36mDust::Role Load (0.2ms)[0m  [1mSELECT `roles`.* FROM `roles` WHERE `roles`.`id` = 1 LIMIT 1[0m
+  Rendered /Users/ross/code/dust/dust-cms/app/views/front_end/page/_admin.html.haml (18.3ms)
+  [1m[35mDust::Section Load (0.4ms)[0m  SELECT `sections`.* FROM `sections` WHERE `sections`.`parent_id` IS NULL AND `sections`.`page_id` = 5 ORDER BY `sections`.`lft`
+  [1m[36mDust::Page Load (0.3ms)[0m  [1mSELECT `pages`.* FROM `pages` WHERE `pages`.`id` = 5 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`linkable_id` = 5 AND `menu_items`.`linkable_type` = 'Dust::Page' LIMIT 1
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/blocks/_normal_block_content.html.haml (2.3ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/blocks/_block.html.haml (21.3ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/front_end/page/show.html.haml within layouts/front_end (129.7ms)
+  [1m[36mDust::Menu Load (0.3ms)[0m  [1mSELECT `menus`.* FROM `menus` WHERE `menus`.`id` = 1 LIMIT 1[0m
+  [1m[35mDust::MenuItem Load (0.3ms)[0m  SELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`menu_id` = 1 AND `menu_items`.`parent_id` IS NULL AND `menu_items`.`active` = 1 ORDER BY `menu_items`.`lft`
+  [1m[36mDust::MenuItem Load (0.3ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE (`menu_items`.`lft` >= 17 AND `menu_items`.`lft` < 18) AND (`menu_items`.id != 13) ORDER BY `menu_items`.`lft`[0m
+  [1m[35mDust::MenuItem Load (0.2ms)[0m  SELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`parent_id` IS NULL AND (active = 1) ORDER BY `menu_items`.`lft`
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE (`menu_items`.`lft` >= 17 AND `menu_items`.`lft` < 18) AND (`menu_items`.id != 13) ORDER BY `menu_items`.`lft`[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `menu_items`.* FROM `menu_items` WHERE (`menu_items`.`lft` >= 17 AND `menu_items`.`lft` < 18) AND (`menu_items`.id != 13) ORDER BY `menu_items`.`lft`
+  [1m[36mDust::MenuItem Load (0.1ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`parent_id` IS NULL ORDER BY `menu_items`.`lft` DESC LIMIT 1[0m
+  Rendered /Users/ross/code/dust/dust-cms/app/views/layouts/app_partials/_application_tree.html.haml (4.1ms)
+  [1m[35mDust::MenuItem Load (0.2ms)[0m  SELECT `menu_items`.* FROM `menu_items` WHERE (`menu_items`.`lft` >= 19 AND `menu_items`.`lft` < 20) AND (`menu_items`.id != 15) ORDER BY `menu_items`.`lft`
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`parent_id` IS NULL AND (active = 1) ORDER BY `menu_items`.`lft`[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `menu_items`.* FROM `menu_items` WHERE (`menu_items`.`lft` >= 19 AND `menu_items`.`lft` < 20) AND (`menu_items`.id != 15) ORDER BY `menu_items`.`lft`
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE (`menu_items`.`lft` >= 19 AND `menu_items`.`lft` < 20) AND (`menu_items`.id != 15) ORDER BY `menu_items`.`lft`[0m
+  Rendered /Users/ross/code/dust/dust-cms/app/views/layouts/app_partials/_application_tree.html.haml (1.9ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/widgets/_site_menu.html.haml (26.9ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/blocks/_block.html.haml (43.1ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/users/_user_bar.html.haml (0.5ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/layouts/app_partials/_analytics.html.haml (0.1ms)
+  [1m[35mSQL (0.6ms)[0m  UPDATE `users` SET `last_activity_at` = '2014-01-14 03:15:43' WHERE `users`.`id` = 1
+Completed 200 OK in 351.9ms (Views: 225.4ms | ActiveRecord: 18.5ms)
+
+
+Started GET "/about-us" for 127.0.0.1 at 2014-01-13 22:15:44 -0500
+Processing by FrontEnd::PageController#show as HTML
+  Parameters: {"filename"=>"about-us"}
+  [1m[36mDust::User Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mDust::SiteWide Load (0.2ms)[0m  SELECT `site_wides`.* FROM `site_wides` ORDER BY category, name
+  [1m[36mDust::Block Load (0.2ms)[0m  [1mSELECT `blocks`.* FROM `blocks` ORDER BY weight ASC[0m
+  [1m[35mDust::Page Load (0.2ms)[0m  SELECT `pages`.* FROM `pages` INNER JOIN `menu_items` ON `menu_items`.`linkable_id` = `pages`.`id` AND `menu_items`.`linkable_type` = 'Dust::Page' WHERE `menu_items`.`url` = '/about-us' LIMIT 1
+  [1m[36mDust::MenuItem Load (0.1ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`linkable_id` = 7 AND `menu_items`.`linkable_type` = 'Dust::Page' LIMIT 1[0m
+  [1m[35mDust::Role Load (0.4ms)[0m  SELECT `roles`.* FROM `roles` WHERE `roles`.`id` = 1 LIMIT 1
+  Rendered /Users/ross/code/dust/dust-cms/app/views/front_end/page/_admin.html.haml (3.8ms)
+  [1m[36mDust::Section Load (0.3ms)[0m  [1mSELECT `sections`.* FROM `sections` WHERE `sections`.`parent_id` IS NULL AND `sections`.`page_id` = 7 ORDER BY `sections`.`lft`[0m
+  [1m[35mDust::Page Load (0.2ms)[0m  SELECT `pages`.* FROM `pages` WHERE `pages`.`id` = 7 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`linkable_id` = 7 AND `menu_items`.`linkable_type` = 'Dust::Page' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `pages`.* FROM `pages` WHERE `pages`.`id` = 7 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`linkable_id` = 7 AND `menu_items`.`linkable_type` = 'Dust::Page' LIMIT 1[0m
+  Rendered /Users/ross/code/dust/dust-cms/app/views/front_end/page/show.html.haml within layouts/front_end (11.0ms)
+  [1m[35mDust::Menu Load (0.5ms)[0m  SELECT `menus`.* FROM `menus` WHERE `menus`.`id` = 1 LIMIT 1
+  [1m[36mDust::MenuItem Load (0.4ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`menu_id` = 1 AND `menu_items`.`parent_id` IS NULL AND `menu_items`.`active` = 1 ORDER BY `menu_items`.`lft`[0m
+  [1m[35mDust::MenuItem Load (0.6ms)[0m  SELECT `menu_items`.* FROM `menu_items` WHERE (`menu_items`.`lft` >= 17 AND `menu_items`.`lft` < 18) AND (`menu_items`.id != 13) ORDER BY `menu_items`.`lft`
+  [1m[36mDust::MenuItem Load (0.4ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`parent_id` IS NULL AND (active = 1) ORDER BY `menu_items`.`lft`[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `menu_items`.* FROM `menu_items` WHERE (`menu_items`.`lft` >= 17 AND `menu_items`.`lft` < 18) AND (`menu_items`.id != 13) ORDER BY `menu_items`.`lft`
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE (`menu_items`.`lft` >= 17 AND `menu_items`.`lft` < 18) AND (`menu_items`.id != 13) ORDER BY `menu_items`.`lft`[0m
+  Rendered /Users/ross/code/dust/dust-cms/app/views/layouts/app_partials/_application_tree.html.haml (7.3ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`parent_id` IS NULL AND (active = 1) ORDER BY `menu_items`.`lft`
+  [1m[36mDust::MenuItem Load (0.2ms)[0m  [1mSELECT `menu_items`.* FROM `menu_items` WHERE `menu_items`.`parent_id` IS NULL ORDER BY `menu_items`.`lft` DESC LIMIT 1[0m
+  Rendered /Users/ross/code/dust/dust-cms/app/views/layouts/app_partials/_application_tree.html.haml (1.5ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/widgets/_site_menu.html.haml (18.4ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/blocks/_block.html.haml (23.9ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/blocks/_normal_block_content.html.haml (0.3ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/blocks/_block.html.haml (4.4ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/dust/users/_user_bar.html.haml (0.7ms)
+  Rendered /Users/ross/code/dust/dust-cms/app/views/layouts/app_partials/_analytics.html.haml (0.2ms)
+  [1m[35mSQL (1.0ms)[0m  UPDATE `users` SET `last_activity_at` = '2014-01-14 03:15:44' WHERE `users`.`id` = 1
+Completed 200 OK in 81.5ms (Views: 69.5ms | ActiveRecord: 5.0ms)

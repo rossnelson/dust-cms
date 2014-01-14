@@ -25,7 +25,6 @@ module Dust
         update_blocks
         if @page.errors.blank?
           @page.update_attributes(@page_attrs)
-          @page
         else
           false
         end

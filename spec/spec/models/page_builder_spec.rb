@@ -15,22 +15,34 @@ describe Dust::Builder::Page do
   end
 
   it "should add sections to a page" do
-    pending
-    section_attr = {:sections => [
-      [0, {
-        :title => Faker::Lorem.sentence(3),
-        :classes => Faker::Lorem.sentence(2),
-        :_destroy => "0"
-      }]
-    ]}
+    Dust::Builder::Page.new(
+      :page => @page,
+      :sections => FactoryGirl.build(:section_attrs)[:sections]
+    ).save
+
+    expect(@page.sections[0]).to be_an_instance_of Dust::Section
+  end
+
+  it "should remove sections marked with _destroy" do
+    Dust::Builder::Page.new(
+      :page => @page,
+      :sections => FactoryGirl.build(:section_attrs)[:sections]
+    ).save
+
+    id = @page.sections[0].id
+
+    section = FactoryGirl.build(:section_attrs)[:sections]
+    section["1"]["_destroy"] = "1"
+    section[id] = section["1"]
+    section.delete("1")
 
     builder = Dust::Builder::Page.new(
       :page => @page,
-      :sections => section_attr
-    )
+      :sections => section
+    ).update
 
-    builder.save
-    puts @page.sections
+    expect(Dust::Page.first.sections).to be_empty
+
   end
 
 end
