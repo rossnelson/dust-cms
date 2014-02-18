@@ -30,6 +30,13 @@ namespace :dust do
     cp(template_path, des_path)
   end
 
+  desc "Dust sorcery initializer"
+  task :sorcery_config => :environment do
+    template_path = File.join(Dust.root, 'config', 'config_templates', 'sorcery.rb')
+    des_path = File.join(Rails.root, 'config')
+    cp(template_path, des_path)
+  end
+
   desc "Dust init css"
   task :init_css => :environment do
     template_path = File.join(Dust.root, 'app', 'assets', 'stylesheets', 'front_end')

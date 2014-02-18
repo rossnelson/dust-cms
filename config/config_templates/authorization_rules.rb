@@ -2,6 +2,10 @@ authorization do
   role :admin do
     has_omnipotence
   end
+
+  role :guest do
+    has_permission_on :dust_contacts, :to => :create
+  end
 end
 
 privileges do

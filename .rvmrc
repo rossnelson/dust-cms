@@ -1,1 +1,1 @@
-rvm use 2.0@dust-cms --create
+rvm use 1.9.3-p0@dust-cms --create

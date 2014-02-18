@@ -4,9 +4,20 @@ module Dust
     module ItemDependency
       extend ActiveSupport::Concern
 
+      # => set an objects filename prefix by calling filename_prefix and
+      #    passing in your prefix string
+      #
+      # filename_prefix "your-prefix/" 
+      # # this will save the menu_item url as => "/your-prefix/instance-filename"
+      #
+      # => the trailing slash is required
+
       included do
         attr_accessible :filename, :nav_link, :active, :menu
-        has_one :menu_item, :as => :linkable, :dependent => :destroy, :autosave => true, :class_name => Dust::MenuItem
+        has_one :menu_item, :as => :linkable, 
+          :dependent => :destroy, 
+          :autosave => true, 
+          :class_name => Dust::MenuItem
 
         auto_build :menu_item
 
@@ -18,11 +29,11 @@ module Dust
       end
 
       def filename
-        self.menu_item.url.gsub("/", "")
+        self.menu_item.url.gsub("/#{self.class.prefix}", "")
       end
 
       def filename=(filename)
-        self.menu_item.url = "/#{filename}"
+        self.menu_item.url = "/#{self.class.prefix}#{filename}"
       end
 
       def active
@@ -50,8 +61,9 @@ module Dust
       end
 
       module ClassMethods
+
         def find_by_filename(filename)
-          filename = "/#{filename}"
+          filename = "/#{self.prefix}#{filename}"
           where(:menu_items => {:url => filename}).joins(:menu_item).first
         end
 
@@ -60,6 +72,14 @@ module Dust
           item.build_menu_item
           item.assign_attributes options
           item
+        end
+
+        def filename_prefix(prefix)
+          @prefix = prefix
+        end
+
+        def prefix
+          @prefix
         end
       end
 
