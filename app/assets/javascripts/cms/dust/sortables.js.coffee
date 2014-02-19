@@ -17,8 +17,9 @@ Dust.sortables = {
   init : ()->
     $("ul#tree").nestedSortable @options
 
-    $('.order').bind 'click', ()=>
-      @saveItems()
+    $('.order').bind 'click', ()->
+      listClass = "." + $(@).data("list-class") + " .index-item"
+      Dust.sortables.saveItems(listClass)
       false
 
   saveItems : ()->
@@ -36,9 +37,10 @@ Dust.sortables = {
   className: ()->
     $('.order').data('class')
 
-  list: ()->
+  list: (listClass=nil)->
+    listClass ||= '.index-item, .sortable-item'
     children = new Array()
-    @itemList = _.map($('.index-item, .sortable-item'), (item, index)->
+    @itemList = _.map($(listClass), (item, index)->
       data =
         id: $(item).data('id')
         position: index

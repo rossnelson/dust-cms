@@ -40,7 +40,6 @@ Rails.application.routes.draw do
   end
 
   scope :module => 'front_end' do
-
     get "search" => "page#search", :as => :view_page_search #new! search
 
     match "sitemap" => "sitemap#index", :as => :sitemap_xml
@@ -48,7 +47,6 @@ Rails.application.routes.draw do
     match '*filename' => 'page#show', :as => :front_end_page
 
     root :to => "page#show", :filename => Dust.config.root#"welcome"
-
   end
 
 end
