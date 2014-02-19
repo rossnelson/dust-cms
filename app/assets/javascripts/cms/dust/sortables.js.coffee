@@ -18,6 +18,7 @@ Dust.sortables = {
     $("ul#tree").nestedSortable @options
 
     $('.order').bind 'click', ()->
+      Dust.sortables.control = @
       if $(@).data("list-class")
         Dust.sortables.listClass = "." + $(@).data("list-class") + " .index-item"
       else
@@ -38,7 +39,7 @@ Dust.sortables = {
     }
 
   className: ()->
-    $('.order').data('class')
+    $(@control).data('class')
 
   list: ()->
     if @listClass == null
