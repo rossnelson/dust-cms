@@ -9,7 +9,7 @@ class PostOffice < ActionMailer::Base
 
   def contact_request(contact)
     @contact = contact
-    mail(:to => Dust.default_recipient, :subject => "New contact request has been received.")
+    mail(:to => contact.email, :subject => "New contact request has been received.")
   end
 
   def password_reset_instructions(user)
