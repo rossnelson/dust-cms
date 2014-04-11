@@ -10,8 +10,8 @@ module Dust
         end
 
         def create
-          file = AppSpecificStringIO.new(params[:qqfile], request.raw_post)
-          respond_with Dust::Gallery::Photo.create :filename => file, :album_id => params[:album_id]
+          #file = AppSpecificStringIO.new(params[:qqfile], request.raw_post)
+          respond_with Dust::Gallery::Photo.create :filename => params[:qqfile], :album_id => params[:album_id]
         end
 
         def update

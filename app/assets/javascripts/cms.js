@@ -4,7 +4,7 @@
 //= require_tree ./core
 //= require ./cms/lib/underscore
 //= require ./cms/lib/backbone
-//= require ./cms/lib/fineuploader-3.0
+//= require ./cms/lib/fineuploader-4.4.4
 //= require ./cms/lib/handlebars
 //= require ./cms/lib/spin
 //= require ./cms/dust
