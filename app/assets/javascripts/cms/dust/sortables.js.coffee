@@ -30,7 +30,8 @@ Dust.sortables = {
     list = @buildData()
     url = $('.order').data('url')
 
-    $.post url, list
+    $.post("#{url}.json", list).done (data)->
+        Dust.sortables.notice(data)
 
   buildData: ()->
     return {
@@ -65,5 +66,15 @@ Dust.sortables = {
     _.each children, (item)=>
       parent = _.findWhere(@itemList, {id: item.parent_id})
       parent.children.push(item)
+
+  notice: (flash)->
+    console.log flash
+    Dust.notice = $("<div class=\'flash_#{flash.type}\'></div>")
+    Dust.notice.html(flash.message)
+
+    $('#header-wrap').after(Dust.notice[0])
+    $(Dust.notice[0]).delay(2000).fadeOut ()->
+      $(Dust.notice).remove()
+
 
 }

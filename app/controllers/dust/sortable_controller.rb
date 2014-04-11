@@ -1,14 +1,15 @@
 module Dust
   class SortableController < AuthenticationController
 
+    #respond_to :json, :js
+
     def sort
       begin
         @menu_sort = Dust::Sort.new(params[:list], params[:class_name])
       rescue ActiveRecord::RecordNotFound => e
-        not_found = true
-        flash[:error] = "Sorting Failed | #{e}"
+        render :json => {type: 'error', message: "Sorting Failed | #{e}"}
       else
-        flash[:notice] = "Sort Successfull!"
+        render :json => {type: 'notice', message: "Sort Successfull!"}
       end
 
     end

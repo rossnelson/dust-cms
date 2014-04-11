@@ -5,6 +5,7 @@ namespace :dust do
     Rake::Task["db:migrate"].invoke
     Rake::Task["dust:seed"].invoke
     Rake::Task["dust:config"].invoke
+    Rake::Task["dust:sorcery_config"].invoke
     Rake::Task["dust:override_scaffold"].invoke
     Rake::Task["dust:authorization"].invoke
     Rake::Task["dust:init_css"].invoke
@@ -33,7 +34,7 @@ namespace :dust do
   desc "Dust sorcery initializer"
   task :sorcery_config => :environment do
     template_path = File.join(Dust.root, 'config', 'config_templates', 'sorcery.rb')
-    des_path = File.join(Rails.root, 'config')
+    des_path = File.join(Rails.root, 'config', 'initializers')
     cp(template_path, des_path)
   end
 

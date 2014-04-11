@@ -21,6 +21,7 @@ require "mustache"
 require "haml-rails"
 require "numbers_and_words"
 require "sass"
+require "rack-raw-upload"
 
 unless Rails.env.production?
   require "thin"
