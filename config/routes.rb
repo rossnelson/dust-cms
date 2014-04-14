@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 
   scope :module => 'front_end' do
     get "search" => "page#search", :as => :view_page_search #new! search
+    get "gallery/:filename" => "gallery#show", :as => :view_gallery
 
     match "sitemap" => "sitemap#index", :as => :sitemap_xml
     match 'post/*filename' => 'post#show', :as => :front_end_post
@@ -50,4 +51,3 @@ Rails.application.routes.draw do
   end
 
 end
-
