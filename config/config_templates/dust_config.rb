@@ -12,6 +12,9 @@ Dust.configure do |dust|
   # => redirects the defined page to the root_url
   dust.config.root = 'welcome'
   
+  # => Array of fields that should show up in the concat form widget
+  dust.config.contact_fields = [:name, :email, :message]
+  
   # => :actions => [contact_confirmation, contact_request]
   dust.config.mailer = PostOffice
 
