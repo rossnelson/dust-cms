@@ -1,6 +1,7 @@
 - @contact = Dust::Contact.new
-= form_for @contact, :validate => true do |f|
+= simple_form_for @contact do |f|
   = f.error_messages
+  = hidden_field_tag :return, request.fullpath
   - Dust.config.contact_fields.each do |field_name|
     = f.input field_name
   .item= f.submit "Submit"
