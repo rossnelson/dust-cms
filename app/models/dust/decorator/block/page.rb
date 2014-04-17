@@ -13,6 +13,7 @@ module Dust::Decorator
       end
 
       def show_me?(uri)
+        uri = uri.gsub(/\?.+/, "")
         show = false
         show = true if (url_list.include?(uri) || url_list.blank?)
         show = true if (uri == "/" && url_list.include?("/#{Dust.config.root}"))
@@ -35,5 +36,3 @@ module Dust::Decorator
     end
   end
 end
-
-
