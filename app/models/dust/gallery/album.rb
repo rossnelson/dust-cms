@@ -7,7 +7,7 @@ module Dust
       attr_accessible :description, :position, :title
       acts_as_nested_set
 
-      validates_presence_of :title, :description
+      validates_presence_of :title
 
       has_many :photos, :dependent => :destroy
     end
