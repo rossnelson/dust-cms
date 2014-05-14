@@ -48,6 +48,7 @@ Rails.application.routes.draw do
     get "posts/all" => "posts#index", :as => :front_end_posts
 
     match '*filename' => 'page#show', :as => :front_end_page
+    get "feeds/posts" => "feeds#posts", :as => :posts_rss
 
     root :to => "page#show", :filename => Dust.config.root#"welcome"
   end
