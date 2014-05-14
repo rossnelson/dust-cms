@@ -1,0 +1,8 @@
+#page-edit
+  - if (!@album.nil?) && permitted_to?(:manage, :dust_pages)
+    .edit-link
+      = link_to new_icon("Block"), new_dust_block_path(:show => @album.match_path, :return => request.fullpath), :class => 'to-admin'
+      = link_to edit_icon("Post"), edit_dust_gallery_album_path(@album), :class => 'to-admin'
+      = link_to index_icon("Posts"), dust_gallery_albums_path, :class => 'to-admin'
+
+

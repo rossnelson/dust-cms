@@ -2,6 +2,9 @@
 - title @album.title
 - description @album.description
 
+- content_for :admin do
+  = render 'front_end/gallery/admin'
+
 = render_region "interior-content" do
   .block.columns.twelve
     .block-content
@@ -11,7 +14,7 @@
 
 = render_region "album-photos" do
   - @album.photos.each do |photo|
-    .block.columns.three
+    .block.columns.two
       = image_tag photo.filename.url(:thumb)
 
 

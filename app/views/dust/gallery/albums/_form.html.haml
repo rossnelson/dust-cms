@@ -1,6 +1,7 @@
 .sub-header.solitary-header.clearfix
   .button-bar.clearfix
     .admin-links
+      = link_to 'View Album', front_end_gallery_path(@album.filename), :class => 'border'
       = link_to 'all Albums', dust_gallery_albums_path, :class => 'border'
       = link_to "delete album", @album, :confirm => 'Are you sure?', :method => :delete
 

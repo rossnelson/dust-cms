@@ -1,9 +1,9 @@
 xml.instruct! :xml, :version => "1.0" 
 xml.rss :version => "2.0" do
   xml.channel do
-    xml.title "Ayurveda Massage Therapies Posts"
-    xml.description "A massage practice that brings Lakeland, Florida and surrounding counties, personalized affordable massage therapy"
-    xml.link "http://ayurvedamt.com/archive"
+    xml.title Dust.site_wides.site_url
+    xml.description Dust.site_wides.default_description
+    xml.link front_end_posts_url
 
     @posts.each do |post|
       xml.item do

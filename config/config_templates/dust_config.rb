@@ -21,8 +21,8 @@ Dust.configure do |dust|
   # => :resize_to_fit => [620, 358], :thumb => process :resize_to_fill => [105, 70]
   dust.config.uploader = GalleryPhotoUploader 
 
-  dust.config.full_image_dimensions  = [620, 358]
-  dust.config.thumb_image_dimensions = [105, 70]
+  dust.config.full_image_dimensions  = [1600, 1600]
+  dust.config.thumb_image_dimensions = [200, 200]
 
   # => system location for ImageMagick commands
   dust.config.uploader_command_path = '/usr/local/bin'
