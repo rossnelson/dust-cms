@@ -6,7 +6,7 @@
     = stylesheet_link_tag 'front_end', 'application'
     = csrf_meta_tag
     = yield(:head)
-  %body
+  %body{class: page_class}
     - flash.each do |name, msg|
       = content_tag :div, msg, :id => "flash_#{name}"
     #container

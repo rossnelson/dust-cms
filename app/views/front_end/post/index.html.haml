@@ -1,0 +1,17 @@
+
+- title "News Archive"
+- description "All our past posts"
+
+= render_region "interior-content" do
+  .block.ten.columns.offset-by-one
+    .block-content
+      %h1 News Archive
+      - @posts.each do |post|
+        .post
+          = link_to front_end_post_path(post.slug) do
+            .columns.two.alpha
+              = post_head(post)
+            .columns.seven.omega
+              = truncate(post.description, :length => 150)
+
+

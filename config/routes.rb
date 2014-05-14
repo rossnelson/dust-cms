@@ -40,11 +40,13 @@ Rails.application.routes.draw do
   end
 
   scope :module => 'front_end' do
-    get "search" => "page#search", :as => :view_page_search #new! search
-    get "gallery/:filename" => "gallery#show", :as => :view_gallery
+    get "search" => "page#search", :as => :front_end_search #new! search
+    get "gallery/:filename" => "gallery#show", :as => :front_end_gallery
 
     match "sitemap" => "sitemap#index", :as => :sitemap_xml
-    match 'post/*filename' => 'post#show', :as => :front_end_post
+    match 'posts/*filename' => 'posts#show', :as => :front_end_post
+    get "posts/all" => "posts#index", :as => :front_end_posts
+
     match '*filename' => 'page#show', :as => :front_end_page
 
     root :to => "page#show", :filename => Dust.config.root#"welcome"

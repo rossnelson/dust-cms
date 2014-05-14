@@ -1,11 +1,20 @@
 module Dust
   class Post < ActiveRecord::Base
     include Dust::Menu::ItemDependency
+    filename_prefix "posts/"
+
     mount_uploader :file, ImageUploader
     attr_accessible :body, :file, :published, :published_date, :share, :share_type, :title
     validates_presence_of :title, :body, :published_date
 
     scope :recent, where(:published => true).order('published_date ASC')
+
+    before_save :set_menu_item
+
+    def set_menu_item
+      self.filename = self.slug
+      self.nav_link = self.title
+    end
 
     def share_types
       ['Facebook', 'Twitter']
@@ -31,9 +40,13 @@ module Dust
       url_title
     end
 
-    def filename=(filename="")
-      self.menu_item.url = "/post/#{slug}"
+    def description
+      @desc ||= self.body.dup
+      @desc.gsub!(/<\/?[^>]*>/, "")
+      @desc.gsub!("&nbsp;", " ")
+      CGI.unescapeHTML(@desc)
     end
+
   end
 end
 

@@ -18,16 +18,12 @@
         = f.input :title
         = f.input :file, :as => :file
         = f.input :published_date, :as => :string
-        = f.input :share
-        = f.input :share_type
 
       .sub-header
         .title Menu Item
       .content-wrapper
         = f.input :active, :as => :boolean, :label => "Show in Menu"
         = f.input :menu, :collection => Dust::Menu.all.map{ |m| [m.title, m.id] }
-        = f.input :nav_link, :as => :hidden
-        = f.input :filename, :as => :hidden
 
     .content-areas
       .sub-header.clearfix
