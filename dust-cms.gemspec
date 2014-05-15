@@ -15,14 +15,20 @@ Gem::Specification.new do |s|
   s.summary     = "Drop in Rails CMS : `bundle` and run `rake dust:init`"
   s.description = "Drop in Rails CMS : `bundle` and run `rake dust:init`"
 
-  s.files = Dir["{app,config,db,lib,vendor}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
-  s.test_files = Dir["spec/**/*"]
+  #s.files        = Dir["{app,config,db,lib,vendor}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
+  s.files         = `git ls-files`.split($/)
+  s.executables   = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  s.test_files    = Dir["spec/**/*"]
   s.require_paths = ["lib"]
 
   s.metadata = {
     "docs" => "http://daux.simian.us",
     "source" => "http://git.simian.us/ross/dust"
   }
+
+  s.add_runtime_dependency "commander"
+  s.add_runtime_dependency "terminal-table"
+  s.add_runtime_dependency "rails", "~> 3.2.16"
 
   s.add_development_dependency 'mysql2'
   s.add_development_dependency 'sqlite3'
@@ -31,7 +37,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'capybara'
   s.add_development_dependency 'factory_girl_rails'
 
-  s.add_dependency "rails", "~> 3.2.16"
   s.add_dependency "rack-raw-upload"
   
   s.add_dependency "sorcery"

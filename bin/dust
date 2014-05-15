@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+lib = File.expand_path('../../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
+require 'rubygems'
+require 'bundler/setup'
+
+require 'rails/all'
+require 'rails/generators'
+require 'rails/generators/rails/app/app_generator'
+
+require 'dust-cms'
+require 'commander/import'
+
+program :version, '0.0.01'
+program :description, 'Generate a new Rails app with all the dust dependencies.'
+
+command :new do |c|
+  c.syntax = 'dust new [site-name]'
+  c.summary = 'Generates a dust app'
+  c.description = 'The "dust new" command creates a new Rails application with a default
+    directory structure and configuration at the path you specify.'
+  c.example 'this generates a new dust app in the current directory with the name wibble', 'dust new wibble'
+  #c.option '', 'skip database creation'
+  c.action do |args, options|
+    gen =  Rails::Generators::AppBase.new
+    puts gen.inspect
+
+    #puts gen.add_source("http://gems.simiancreative.com")
+
+    #puts Rails::Generators::AppGenerator.methods
+  end
+end
