@@ -24,7 +24,7 @@ command :new do |c|
   c.example 'this generates a new dust app in the current directory with the name wibble', 'dust new wibble'
   #c.option '', 'skip database creation'
   c.action do |args, options|
-    gen =  Rails::Generators::AppBase.new
+    gen =  Rails::Generators::AppBase.new(Dir.pwd)
     puts gen.inspect
 
     #puts gen.add_source("http://gems.simiancreative.com")

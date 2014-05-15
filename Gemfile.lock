@@ -36,7 +36,6 @@ PATH
 
 GEM
   remote: http://rubygems.org/
-  remote: http://gems.simiancreative.com/
   specs:
     actionmailer (3.2.16)
       actionpack (= 3.2.16)
