@@ -41,7 +41,7 @@ module Dust
       @post = Post.find(params[:id])
       @post.destroy
 
-      redirect_to posts_url
+      redirect_to dust_posts_url
     end
   end
 end
