@@ -3,6 +3,8 @@
   %head
     %title= h(yield(:title) || @site_data.site_info.site_url)
     %meta{:content => (yield(:description) || @site_data.site_info.default_description), :name => "description"}/
+    - if Dust.config.responsive
+        %meta{content: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no", name: "viewport"}/
     = stylesheet_link_tag 'front_end', 'application'
     = csrf_meta_tag
     = yield(:head)

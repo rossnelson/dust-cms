@@ -1,5 +1,8 @@
 Dust.configure do |dust|
 
+  # => boolean that controls the responsive meta tag in the fron_end layout
+  dust.config.responsive = false
+  
   # => rendered within the front_end layout
   #     regions are wrappers for groups of blocks
   dust.config.regions = ['header-one', 'header-two', 'content-default', 'footer-one', 'footer-two']
