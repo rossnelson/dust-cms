@@ -1,9 +1,9 @@
 - base_url = "http://#{request.host_with_port}"
 !!! XML
 %urlset{:xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9"}
-  - for menu_item in @menu_items
+  - @menu_items.each do |menu_item|
     %url
       %loc #{base_url}#{menu_item.url}
-      %lastmod= @latest.updated_at
+      %lastmod= I18n.l(menu_item.updated_at, :format => :w3c)
       %changefreq monthly
       %priority 0.5
