@@ -12,6 +12,10 @@ module Dust
     has_many :blocks, 
       :finder_sql => proc{"SELECT `blocks`.* FROM `blocks` WHERE `blocks`.`show` LIKE \"%/#{filename}%\" ORDER BY weight ASC"}
 
+    def self.sitemap
+      Dust::Page.all.map{|p| p.menu_item ? p.menu_item : nil }
+    end
+
     def old_blocks
       menu_item.url_changed? ? Block.where("`show` LIKE ?", "%#{menu_item.url_was}%") : []
     end

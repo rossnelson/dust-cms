@@ -9,7 +9,7 @@ module Dust
 
     validates_uniqueness_of :url
 
-    scope :sitemap, :select => 'url, created_at, updated_at', :limit => 50000
+    #scope :sitemap, :select => 'url, created_at, updated_at', :limit => 50000
 
     def self.page(search, page)
       search(search).order("title").paginate(:per_page => 12, :page => page)
