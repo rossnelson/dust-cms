@@ -4,7 +4,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :title
       t.string :file
       t.boolean :published
-      t.datetime :published_at
+      t.datetime :published_date
       t.boolean :share
       t.string :share_type
       t.text :body

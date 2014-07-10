@@ -1,7 +1,7 @@
 module Dust
   class Contact < ActiveRecord::Base
     attr_accessible :name, :email, :company_name, :phone, :address, :city, :state, :zip, :message, :hear
-    
+
     validates_presence_of :name
     validates_presence_of :email
     validates_format_of :email, :with => /^([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})$/i, :message => "Should look like an email address."
@@ -10,7 +10,7 @@ module Dust
     def self.total_on(date)
       where("date(created_at) = ?", date)
     end
-    
+
     def self.page(search, page, date)
       search(search, date).order("created_at DESC").paginate(:per_page => 12, :page => page)
     end
