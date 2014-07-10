@@ -7,7 +7,7 @@ module Dust
     attr_accessible :body, :file, :published, :published_date, :share, :share_type, :title
     validates_presence_of :title, :body, :published_date
 
-    scope :recent, where(:published => true).order('published_date ASC')
+    scope :recent, where(:published => true).order('published_date DESC')
 
     before_save :set_menu_item
 

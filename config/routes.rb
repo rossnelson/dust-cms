@@ -44,8 +44,8 @@ Rails.application.routes.draw do
     get "gallery/:filename" => "gallery#show", :as => :front_end_gallery
 
     match "sitemap" => "sitemap#index", :as => :sitemap_xml
-    match 'posts/*filename' => 'posts#show', :as => :front_end_post
     get "posts/all" => "posts#index", :as => :front_end_posts
+    match 'posts/*filename' => 'posts#show', :as => :front_end_post
 
     get "feeds/posts" => "feeds#posts", :as => :posts_rss
     match '*filename' => 'page#show', :as => :front_end_page
