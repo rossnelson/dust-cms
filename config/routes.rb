@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   end
 
   scope :module => 'front_end' do
-    get "search" => "page#search", :as => :front_end_search #new! search
+    get "search" => "page#search", :as => :front_end_search 
     get "gallery/:filename" => "gallery#show", :as => :front_end_gallery
 
     match "sitemap" => "sitemap#index", :as => :sitemap_xml

@@ -1,7 +1,6 @@
 module Dust
   class SessionsController < AuthenticationController
 
-
     layout "sessions"
 
     def new
@@ -10,14 +9,12 @@ module Dust
 
     def create
       @user = login(params[:dust_session][:username], params[:dust_session][:password], params[:dust_session][:remember_me])
-      #raise "hey there"
       if @user
-        redirect_back_or_to dust_dashboard_path, :notice => "Logged In!"
+        redirect_back_or_to Dust.config.after_login_path, :notice => "Logged In!"
       else
         @session = Dust::Session.new(params[:dust_session], @user)
         @session.valid?
         render :action => 'new'
-        #flash.alert = "Email or Password Invalid!"
       end
     end
 

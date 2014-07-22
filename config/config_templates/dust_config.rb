@@ -1,6 +1,9 @@
 Dust.configure do |dust|
 
-  # => boolean that controls the responsive meta tag in the fron_end layout
+  # => The redirect url passed after successful login
+  dust.after_login_path = "/dust/dashboard/show"
+
+  # => boolean that controls the responsive meta tag in the front_end layout
   dust.config.responsive = false
   
   # => rendered within the front_end layout
