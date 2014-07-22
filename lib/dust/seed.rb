@@ -20,6 +20,12 @@ module Dust
         :email => 'admin@dust.com', 
         :role => Dust::Role.find_by_name("admin")
       )
+      Dust::User.create(:username => 'moderator', 
+        :password => "secret", 
+        :password_confirmation => "secret", 
+        :email => 'moderator@dust.com', 
+        :role => Dust::Role.find_by_name("moderator")
+      )
     end
 
     def menus
