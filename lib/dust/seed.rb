@@ -23,8 +23,11 @@ module Dust
     end
 
     def menus
-      [Dust::Menu.create({:title => "Main Menu", :nestable => "nest"}),
-      Dust::Menu.create({:title => "Admin Menu", :nestable => "no-nest"})]
+      [
+        Dust::Menu.create({:title => "Main Menu", :nestable => "nest"}),
+        Dust::Menu.create({:title => "Admin Menu", :nestable => "no-nest"}),
+        Dust::Menu.create({:title => "Posts Menu", :nestable => "no-nest"})
+      ]
     end
 
     def menu_items
@@ -58,9 +61,7 @@ module Dust
         {:name => "site url", :value               => "www.newsite.com", :category                              => "site info"},
         {:name => "default description", :value    => "welcome to our new website", :category                   => "site info"},
         {:name => "default recipient", :value      => "admin@dust.com", :category                               => "contact info"},
-        {:name => "default recipient name", :value => "ross nelson", :category                                  => "contact info"},
-        {:name => "address", :value                => "12164 w. wadsworth rd.\nbeach park, il 60087", :category => "location info"},
-        {:name => "phone", :value                  => "847.244.2878", :category                                 => "location info"}
+        {:name => "default recipient name", :value => "ross nelson", :category                                  => "contact info"}
       ])
     end
 
