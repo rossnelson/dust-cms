@@ -20,7 +20,7 @@ module Dust
 
         auto_build :menu_item
 
-        validates_presence_of :filename, :nav_link, :menu
+        validates_presence_of :filename, :nav_link
       end
 
       def match_path
