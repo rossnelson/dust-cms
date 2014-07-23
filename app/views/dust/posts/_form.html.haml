@@ -19,12 +19,6 @@
         = f.input :file, :as => :file
         = f.input :published_date, :as => :string
 
-      .sub-header
-        .title Menu Item
-      .content-wrapper
-        = f.input :active, :as => :boolean, :label => "Show in Menu"
-        = f.input :menu, :collection => Dust::Menu.all.map{ |m| [m.title, m.id] }
-
     .content-areas
       .sub-header.clearfix
         .title Post Body

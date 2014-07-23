@@ -6,10 +6,8 @@ module Dust
       # => set an objects filename prefix by calling filename_prefix and
       #    passing in your prefix string
       #
-      # filename_prefix "your-prefix/" 
+      # filename_prefix "your-prefix" 
       # # this will save the menu_item url as => "/your-prefix/instance-filename"
-      #
-      # => the trailing slash is required
 
       included do
         attr_accessible :filename, :nav_link, :active, :menu
@@ -74,7 +72,7 @@ module Dust
         end
 
         def filename_prefix(prefix)
-          @prefix = prefix
+          @prefix = "#{prefix}/"
         end
 
         def prefix

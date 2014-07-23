@@ -1,7 +1,7 @@
 module Dust
   class Post < ActiveRecord::Base
     include Dust::Menu::ItemDependency
-    filename_prefix "posts/"
+    filename_prefix "posts"
 
     mount_uploader :file, ImageUploader
     attr_accessible :body, :file, :published, :published_date, :share, :share_type, :title
@@ -9,15 +9,12 @@ module Dust
 
     scope :recent, where(:published => true).order('published_date DESC')
 
-    before_save :set_menu_item
+    before_validation :set_menu_item
 
     def set_menu_item
       self.filename = self.slug
       self.nav_link = self.title
-    end
-
-    def share_types
-      ['Facebook', 'Twitter']
+      self.menu     = 3
     end
 
     def published_date
@@ -34,10 +31,6 @@ module Dust
 
     def url_title
       title.blank? ? "empty-title" : title.parameterize
-    end
-
-    def filename
-      url_title
     end
 
     def description
