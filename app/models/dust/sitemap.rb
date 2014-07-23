@@ -2,24 +2,19 @@ module Dust
   class Sitemap
 
     def self.items
-      items = self.new
-      Dust.config.menus_on_sitemap.collect do |menu_name|
-        menus = items.match_(menu_name)
-        unless menus.blank?
-          menus = menus.collect do |menu| 
-            menu.menu_items.select('title, url, updated_at') 
-          end
-        end
-        menus
-      end.flatten
+      menus.map { |menu| menu.menu_items }.flatten
     end
 
-    def match_(name)
-      titles.where('title LIKE ?', "%#{name}%")
+    def self.menus
+      titles.where('title REGEXP ?', names).includes(:menu_items)
     end
 
-    def titles
-      @titles ||= Dust::Menu.select('title, id')
+    def self.names
+      Dust.config.menus_on_sitemap.join("|")
+    end
+
+    def self.titles
+      Dust::Menu.select('title, id')
     end
 
   end
