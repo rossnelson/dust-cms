@@ -1,5 +1,8 @@
 Dust.configure do |dust|
 
+  # => The menu names that should be included on th esitemap
+  dust.config.menus_on_sitemap = ["main", "post"]
+
   # => The redirect url passed after successful login
   dust.config.after_login_path = "/dust/dashboard/show"
 
