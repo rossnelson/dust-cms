@@ -1,5 +1,5 @@
 //= require jquery
-//= require jquery.ui.all
+//= require jquery-ui
 //= require jquery_ujs
 //= require_tree ./core
 //= require ./cms/lib/underscore
