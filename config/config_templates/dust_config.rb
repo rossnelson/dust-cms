@@ -1,5 +1,5 @@
-Dust.configure do |dust|
 
+Dust.configure do |dust|
   # => The menu names that should be included on th esitemap
   dust.config.menus_on_sitemap = ["main", "post"]
 
@@ -8,10 +8,11 @@ Dust.configure do |dust|
 
   # => boolean that controls the responsive meta tag in the front_end layout
   dust.config.responsive = false
-  
+
   # => rendered within the front_end layout
   #     regions are wrappers for groups of blocks
   dust.config.regions = ['header-one', 'header-two', 'content-default', 'footer-one', 'footer-two']
+
   #     each new page will be created along with a block that renders within the defined default_region
   dust.config.default_region = 'content-default'
 
@@ -20,10 +21,10 @@ Dust.configure do |dust|
 
   # => redirects the defined page to the root_url
   dust.config.root = 'welcome'
-  
+
   # => Array of fields that should show up in the concat form widget
   dust.config.contact_fields = [:name, :email, :message]
-  
+
   # => :actions => [contact_confirmation, contact_request]
   dust.config.mailer = PostOffice
 
@@ -35,5 +36,4 @@ Dust.configure do |dust|
 
   # => system location for ImageMagick commands
   dust.config.uploader_command_path = '/usr/local/bin'
-
 end
