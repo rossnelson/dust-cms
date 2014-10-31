@@ -1,4 +1,5 @@
-%ul
-  - @menu_items.each do |menu_item|
-    %li
-      = link_to menu_item.title, menu_item.url
+= render_region "sitemap" do
+  %ul
+    - @menu_items.each do |menu_item|
+      %li
+        = link_to menu_item.title, menu_item.url
